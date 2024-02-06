@@ -1,0 +1,154 @@
+/* Overall styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  color: #09203F;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background: linear-gradient(180deg, #136a8a, #267871);
+}
+
+#root {
+  height: 100%;
+}
+
+.link {
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.icon {
+  font-size: 2.5em;
+  padding: 0 15px;
+}
+
+/* Home */
+.componentContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homeBackground {
+  background-color: white;
+  width: 75%;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  border-radius: 10px;
+  box-shadow: rgb(40, 40, 40) 0 10px 40px;
+  overflow: hidden;
+}
+
+.homeContent {
+  display: flex;
+  height: 100%;
+}
+
+.homeLeftContent {
+  width: 50%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homeLeftContent p {
+  font-size: 3em;
+  width: 70%;
+  line-height: 200%;
+  font-weight: 600;
+}
+
+.leftContentName {
+  font-family: 'Merriweather', serif;
+  background: linear-gradient(90deg, #FF512F, #DD2476);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.homeRightContent {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileImg {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  object-position: 50% 20%;
+  border: 5px double black;
+  border-radius: 50%;
+  box-shadow: rgb(120, 120, 120) 0 5px 20px;
+}
+
+/* Header */
+.headerContainer {
+  background-color: #dff2ff;
+  width: 100%;
+  height: 150px;
+  padding: 0 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerTitle {
+  background-color: #dff2ff;
+  border-radius: 10px;
+  font-size: 1.5em;
+  color: #09203F;
+  font-weight: 500;
+}
+
+.headerList {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  width: 450px;
+}
+
+.headerListItem {
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+}
+
+.headerListItem::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #09203F;
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.headerListItem:hover::after {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Footer */
+.footer {
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
