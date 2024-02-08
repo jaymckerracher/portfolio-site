@@ -3,152 +3,149 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
-  color: #09203F;
-}
-
-html {
-  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  color: white;
 }
 
 body {
-  height: 100%;
-  background: linear-gradient(180deg, #136a8a, #267871);
+  overscroll-behavior: none;
 }
 
 #root {
-  height: 100%;
-}
-
-.link {
-  text-decoration: none;
-  font-size: 1.2em;
-}
-
-.icon {
-  font-size: 2.5em;
-  padding: 0 15px;
-}
-
-/* Home */
-.componentContainer {
-  width: 100%;
-  height: 100%;
+  height: 100vh;
+  background-color: #121212;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
-.homeBackground {
-  background-color: white;
-  width: 75%;
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 65%;
+  min-width: 1092px;
+}
+
+nav {
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(to left, rgb(0 0 0 / 50%), #121212);
+  border-right: white solid 1px;
+}
+
+.navList {
   height: 85%;
   display: flex;
   flex-direction: column;
-  position: absolute;
-  border-radius: 10px;
-  box-shadow: rgb(40, 40, 40) 0 10px 40px;
-  overflow: hidden;
-}
-
-.homeContent {
-  display: flex;
-  height: 100%;
-}
-
-.homeLeftContent {
-  width: 50%;
-  text-align: center;
-  display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: end;
+  margin-right: 10px;
 }
 
-.homeLeftContent p {
-  font-size: 3em;
-  width: 70%;
-  line-height: 200%;
+.navLink {
+  color: white;
+  text-decoration: none;
+  display: block;
+  margin: 20px 0;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  transition: font-weight 300ms;
+}
+
+.navHyphen {
+  width: 20px;
+  height: 1px;
+  display: inline-block;
+  background-color: white;
+  margin-right: 10px;
+  transition: height 300ms, width 300ms;
+}
+
+.navLink:hover .navHyphen {
+  width: 40px;
+  height: 2px;
   font-weight: 600;
 }
 
-.leftContentName {
-  font-family: 'Merriweather', serif;
-  background: linear-gradient(90deg, #FF512F, #DD2476);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+.navLink:hover {
+  font-weight: 600;
 }
 
-.homeRightContent {
-  width: 50%;
+.navIcons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 15%;
+}
+
+.icon {
+  font-size: 3em;
+  padding: 15px;
+  transition: font-size 300ms;
+}
+
+.navIcons a:hover .icon {
+  font-size: 4em;
+}
+
+main {
+  width: 70%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
-.profileImg {
-  width: 400px;
-  height: 400px;
-  object-fit: cover;
-  object-position: 50% 20%;
-  border: 5px double black;
-  border-radius: 50%;
-  box-shadow: rgb(120, 120, 120) 0 5px 20px;
+main::-webkit-scrollbar {
+  display: none;
 }
 
-/* Header */
-.headerContainer {
-  background-color: #dff2ff;
-  width: 100%;
-  height: 150px;
-  padding: 0 100px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.headerTitle {
-  background-color: #dff2ff;
-  border-radius: 10px;
-  font-size: 1.5em;
-  color: #09203F;
-  font-weight: 500;
-}
-
-.headerList {
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  width: 450px;
-}
-
-.headerListItem {
-  font-weight: 500;
+.mainContainer {
+  width: 90%;
+  height: 90%;
   position: relative;
-  overflow: hidden;
 }
 
-.headerListItem::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background-color: #09203F;
-  opacity: 0;
-  transform: translate3d(-100%, 0, 0);
-  transition: opacity 300ms, transform 300ms;
-}
-
-.headerListItem:hover::after {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-}
-
-/* Footer */
-.footer {
-  height: 150px;
+.headerContent {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
+  margin: 0 7%;
+}
+
+header h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 4rem;
+  display: inline;
+  background: linear-gradient(90deg, #A9F1DF, #FFBBBB);
+  background-clip: text;
+  color: transparent;
+}
+
+header img {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 15%;
+  box-shadow: rgba(0, 0, 0) 0px 10px 20px;
+  z-index: 2;
+  padding: 5px;
+  border: white solid 2px;
+  background-color: #121212;
+}
+
+.customRule {
+  width: 100%;
+  height: 0.5px;
+  background-color: white;
+  border-radius: 1em;
+  position: relative;
+  bottom: 25px;
+  z-index: 1;
+  margin-bottom: 50px;
 }
