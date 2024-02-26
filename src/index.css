@@ -4,11 +4,11 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
-  color: white;
 }
 
 body {
   overscroll-behavior: none;
+  color: white;
 }
 
 #root {
@@ -80,13 +80,61 @@ nav {
 }
 
 .icon {
-  font-size: 3em;
+  font-size: 42px;
   padding: 15px;
-  transition: font-size 300ms;
+  transition: font-size 300ms, color 300ms;
+  color: white;
 }
 
-.navIcons a:hover .icon {
+.icon:hover {
   font-size: 4em;
+}
+
+.mailButton:hover {
+  color: #242526;
+  cursor: copy;
+}
+
+.mail {
+  position: relative;
+}
+
+.copyIcon {
+  position: absolute;
+  transform-origin: center center;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: auto;
+  font-size: 1em;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 300ms, font-size 300ms;
+}
+
+.mailButton:hover ~ .copyIcon {
+  opacity: 1;
+  font-size: 2em;
+}
+
+.emailAddress {
+  position: absolute;
+  top: -20%;
+  left: calc(50% - 135px);
+  background-color: white;
+  color: black;
+  opacity: 0;
+  width: 270px;
+  border-radius: 5em;
+  padding: 3px 0;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0) 0px 0px 30px 10px;
+  transition: opacity 300ms, font-size 300ms, width 300ms;
+}
+
+.mailButton:hover ~ .emailAddress {
+  opacity: 1;
 }
 
 main {
@@ -96,8 +144,8 @@ main {
   justify-content: center;
   align-items: center;
   overflow: scroll;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 main::-webkit-scrollbar {
@@ -147,5 +195,200 @@ header img {
   position: relative;
   bottom: 25px;
   z-index: 1;
-  margin-bottom: 50px;
+}
+
+.mainContent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section {
+  width: 80%;
+  margin-top: 100px;
+}
+
+section .customRule {
+  bottom: 0;
+  margin: 10px 0;
+}
+
+.aboutContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aboutContainer p {
+  margin-top: 20px;
+  width: 90%;
+}
+
+section ul {
+  margin: 5px 0 0 50px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: repeat(5) 100%;
+  gap: 75px 0;
+  padding: 20px;
+  justify-content: center;
+  width: 90%;
+}
+
+.gridFlex {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.skillsFlexContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  box-shadow: rgba(0, 0, 0) 0px 0px 30px;
+  border-radius: 1em;
+}
+
+.skillIcon {
+  font-size: 42px;
+  margin: 5px;
+}
+
+.oddIcon {
+  width: 42px;
+}
+
+.skillsImg {
+  height: 42px;
+  margin: 5px;
+}
+
+.project {
+  margin-bottom: 70px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project h3 {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.projectFade {
+  position: absolute;
+  bottom: 0;
+  height: 70%;
+  width: 100%;
+  background: linear-gradient(to bottom, rgba(18, 18, 18, 0), rgb(18, 18, 18));
+  mask: linear-gradient(to bottom, transparent, #181818 80%);
+  backdrop-filter: blur(2px);
+}
+
+.projectMain {
+  width: 100%;
+  padding: 30px 30px;
+  height: 500px;
+  overflow: hidden;
+  position: relative;
+}
+
+.projectMain p {
+  margin-bottom: 10px;
+  text-align: justify;
+}
+
+.projectImgContainer {
+  width: 50%;
+  aspect-ratio : 1 / 1;
+  overflow: hidden;
+  position: relative;
+  border-radius: 1em;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0) 0px 0px 30px;
+  float: left;
+  margin: 0 18px 10px 0;
+  z-index: 999;
+}
+
+#plotTwistImg {
+  height: 280%;
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  transform-origin: center center;
+  transform: translate(-50%, -50%) rotate(-30deg);
+}
+
+#NcFrontImg {
+  height: 250%;
+  position: absolute;
+  top: -10%;
+  left: 35%;
+  transform-origin: center center;
+  transform: translate(-50%, -50%) rotate(-15deg);
+}
+
+#NcBackImg {
+  height: 280%;
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  transform-origin: center center;
+  transform: translate(-50%, -50%) rotate(-30deg);
+}
+
+.readMoreButton {
+  padding: 7.5px 15px;
+  border-radius: 10em;
+  border: none;
+  width: 125px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0) 0px 0px 30px;
+  cursor: pointer;
+}
+
+.readMoreButtonUp {
+  background-color: white;
+  transition: background-color 500ms, margin-top 500ms;
+}
+
+.readMoreButtonDown {
+  background-color: white;
+  transition: background-color 500ms, margin-top 500ms;
+  margin-top: 50px;
+}
+
+.readMoreArrowUp {
+  rotate: 0deg;
+  transition: rotate 500ms;
+}
+
+.readMoreArrowDown {
+  rotate: -180deg;
+  transition: rotate 500ms;
+}
+
+.readMoreText {
+  opacity: 1;
+  transition: opacity 250ms;
+}
+
+.readMoreTextTransition {
+  opacity: 0;
+  transition: opacity 250ms;
 }
