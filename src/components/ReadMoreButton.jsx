@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
-function ReadMoreButton () {
+function ReadMoreButton ({setFadeStyle, setProjectStyling}) {
     const [readMoreButton, setReadMoreButton] = useState('readMoreButtonUp');
     const [readMoreArrow, setReadMoreArrow] = useState('readMoreArrowUp');
     const [readMoreText, setReadMoreText] = useState('Read More');
@@ -22,9 +22,13 @@ function ReadMoreButton () {
         <button className={`${readMoreButton} readMoreButton`} onClick={() => {
             if (readMoreButton === 'readMoreButtonUp') {
                 readMoreFunc('Down', 'Less');
+                setFadeStyle('projectFade fadeDisappear');
+                setProjectStyling('projectMain');
             }
             else {
                 readMoreFunc('Up', 'More');
+                setFadeStyle('projectFade');
+                setProjectStyling('projectMain projectMainLimit');
             }
         }}>
             <p className={readMoreTextStyle}>{readMoreText}</p>

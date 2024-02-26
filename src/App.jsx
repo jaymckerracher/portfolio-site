@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 import ReadMoreButton from './components/ReadMoreButton';
 import Project from './components/Project';
+import projects from './projects';
 
 function App() {
   const handleButtonClick = async () => {
@@ -29,10 +30,8 @@ function App() {
     }
   };
 
-  const [readMoreButton, setReadMoreButton] = useState('readMoreButtonUp');
-  const [readMoreArrow, setReadMoreArrow] = useState('readMoreArrowUp');
-  const [readMoreText, setReadMoreText] = useState('Read More');
-  const [readMoreTextStyle, setReadMoreTextStyle] = useState('readMoreText');
+  const [fadeStyle, setFadeStyle] = useState('projectFade');
+  const [projectStyling, setProjectStyling] = useState('projectMain projectMainLimit');
 
   function readMoreFunc (y, lessOrMore) {
     setReadMoreButton(`readMoreButton${y}`);
@@ -195,47 +194,9 @@ function App() {
               <section id='projects'>
                 <h2>Projects</h2>
                 <div className="customRule" />
-
-                <div className="project">
-                  <h3>PlotTwist</h3>
-                  <div className="projectMain">
-                    <div className="projectFade" />
-                    <div className="projectImgContainer">
-                      <img src="src/assets/plottwist.png" alt="PlotTwist" id='plotTwistImg'/>
-                    </div>
-                    <p>For the final three weeks of the bootcamp, I worked with a team of five to create an app where users can upload their unwanted books and swap them with other users’ unwanted books. This was my first time working with a larger team and, despite being nervous at first, I enjoyed every second of the collaborative process.</p>
-                    <p>The best part about working with a team was the sense of camaraderie that drove us throughout the project. The majority of the first week was spent planning - leaving us two weeks of development time. We had a lot of features that we wanted to include (some of which were new to all of us, such as a chat functionality) and being able to split the workload and help each other was a big motivation!</p>
-                    <p>That’s not to say we didn’t experience problems during development. Working with new technologies such as React Native and Supabase introduced challenges that we hadn’t anticipated. React Native, while being structurally similar to React.js, was syntactically different enough to slow down progress at first. Utilising new components such as Flatlists and Drawers, while using a different technique to style the app took a while to get used to.</p>
-                    <p>By the end of the three weeks, we had delivered our MVP, along with some extra features. Once logged into the app, users can upload unwanted books to their library. These books can then be seen by other users and a swap request can be made. Utilising the negotiation interface along with the chat can then lead to a fair swap that satisfies both parties.</p>
-                  </div>
-                  <ReadMoreButton />
-                </div>
-
-                <div className="project">
-                  <h3>NorthCoders News (Front End)</h3>
-                  <div className="projectMain">
-                    <div className="projectFade" />
-                    <div className="projectImgContainer">
-                      <img src="src/assets/nc-news-front.png" alt="NC News Front End" id='NcFrontImg'/>
-                    </div>
-                    <p className='projectText'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero adipisci nulla autem quas dolore, voluptates pariatur numquam molestiae quidem, suscipit nemo maxime hic doloribus, totam asperiores excepturi dolores nesciunt ipsum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero adipisci nulla autem quas dolore, voluptates pariatur numquam molestiae quidem, suscipit nemo maxime hic doloribus, totam asperiores excepturi dolores nesciunt ipsum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero adipisci nulla autem quas dolore, voluptates pariatur numquam molestiae quidem, suscipit nemo maxime hic doloribus, totam asperiores excepturi dolores nesciunt ipsum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero adipisci nulla autem quas dolore, voluptates pariatur numquam molestiae quidem, suscipit nemo maxime hic doloribus, totam asperiores excepturi dolores nesciunt ipsum?</p>
-                  </div>
-                  <ReadMoreButton />
-                </div>
-
-                <Project />
-
-                <div className="project">
-                  <h3>NorthCoders News (Back End)</h3>
-                  <div className="projectMain">
-                    <div className="projectFade" />
-                    <div className="projectImgContainer">
-                      <img src="src/assets/nc-news-back.png" alt="NC News Back End" id='NcBackImg'/>
-                    </div>
-                    <p className='projectText'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero adipisci nulla autem quas dolore, voluptates pariatur numquam molestiae quidem, suscipit nemo maxime hic doloribus, totam asperiores excepturi dolores nesciunt ipsum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero adipisci nulla autem quas dolore, voluptates pariatur numquam molestiae quidem, suscipit nemo maxime hic doloribus, totam asperiores excepturi dolores nesciunt ipsum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero adipisci nulla autem quas dolore, voluptates pariatur numquam molestiae quidem, suscipit nemo maxime hic doloribus, totam asperiores excepturi dolores nesciunt ipsum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero adipisci nulla autem quas dolore, voluptates pariatur numquam molestiae quidem, suscipit nemo maxime hic doloribus, totam asperiores excepturi dolores nesciunt ipsum?</p>
-                  </div>
-                  <ReadMoreButton />
-                </div>
+                <Project project={projects[0]}/>
+                <Project project={projects[1]}/>
+                <Project project={projects[2]}/>
               </section>
             </div>
           </div>
