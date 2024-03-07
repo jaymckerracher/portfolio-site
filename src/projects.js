@@ -9,7 +9,8 @@ const projects = [
             'The best part about working with a team was the sense of camaraderie that drove us throughout the project. The majority of the first week was spent planning - leaving us two weeks of development time. We had a lot of features that we wanted to include (some of which were new to all of us, such as a chat functionality) and being able to split the workload and help each other was a big motivation!',
             'That’s not to say we didn’t experience problems during development. Working with new technologies such as React Native and Supabase introduced challenges that we hadn’t anticipated. React Native, while being structurally similar to React.js, was syntactically different enough to slow down progress at first. Utilising new components such as Flatlists and Drawers, while using a different technique to style the app took a while to get used to.',
             'By the end of the three weeks, we had delivered our MVP, along with some extra features. Once logged into the app, users can upload unwanted books to their library. These books can then be seen by other users and a swap request can be made. Utilising the negotiation interface along with the chat can then lead to a fair swap that satisfies both parties.'
-        ]
+        ],
+        githubLink: 'https://github.com/jaymckerracher/book-swap-app'
     },
     {
         title: 'NorthCoders News (Front End)',
@@ -17,8 +18,13 @@ const projects = [
         imgAlt: 'NC News Front End',
         imgId: 'NcFrontImg',
         desc: [
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero adipisci nulla autem quas dolore, voluptates pariatur numquam molestiae quidem, suscipit nemo maxime hic doloribus, totam asperiores excepturi dolores nesciunt ipsum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero adipisci nulla autem quas dolore, voluptates pariatur numquam molestiae quidem, suscipit nemo maxime hic doloribus, totam asperiores excepturi dolores nesciunt ipsum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero adipisci nulla autem quas dolore, voluptates pariatur numquam molestiae quidem, suscipit nemo maxime hic doloribus, totam asperiores excepturi dolores nesciunt ipsum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero adipisci nulla autem quas dolore, voluptates pariatur numquam molestiae quidem, suscipit nemo maxime hic doloribus, totam asperiores excepturi dolores nesciunt ipsum?'
-        ]
+            'For my first solo project on the NorthCoders bootcamp, I was tasked with creating the back end for my NC News application. I used a range of technologies to complete this task and learnt a lot along the way, both syntactically and conceptually.',
+            'I used the Express.js framework to create the application and utilised the MVC (Model, View, Controller) design pattern to manage the different end points. These end points would allow users to utilise the most common HTTP methods, such as getting, posting, patching and deleting data.',
+            'Using environment variables, the app could be run in three different environments - the test environment, the development environment and the production environment. By having these different environments, I was able to switch between different data sets. This allowed me to test my code efficiently, as I was manipulating data that would re-seed each time I ran a test. It also meant that once the app was hosted along with its front end counterpart, I could safely run tests without the risk of making changes to users data.',
+            'Tables within these databases contained information that would be used for the NC News application, such as user profiles, articles, comments and topics. The models that interact with these tables and make queries would also check that the requests to these end points were valid, such as ensuring that comments are a valid length, for example.',
+            'I used a range of different libraries and packages that I hadn’t worked with before, such as the ‘dotenv’ library. This library loads environment variables into a current process, ensuring the security of a database once the project had been uploaded to GitHub.'
+        ],
+        githubLink: 'https://github.com/jaymckerracher/fe-nc-news'
     },
     {
         title: 'NorthCoders News (Back End)',
@@ -26,8 +32,13 @@ const projects = [
         imgAlt: 'NC News Back End',
         imgId: 'NcBackImg',
         desc: [
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero adipisci nulla autem quas dolore, voluptates pariatur numquam molestiae quidem, suscipit nemo maxime hic doloribus, totam asperiores excepturi dolores nesciunt ipsum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero adipisci nulla autem quas dolore, voluptates pariatur numquam molestiae quidem, suscipit nemo maxime hic doloribus, totam asperiores excepturi dolores nesciunt ipsum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero adipisci nulla autem quas dolore, voluptates pariatur numquam molestiae quidem, suscipit nemo maxime hic doloribus, totam asperiores excepturi dolores nesciunt ipsum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero adipisci nulla autem quas dolore, voluptates pariatur numquam molestiae quidem, suscipit nemo maxime hic doloribus, totam asperiores excepturi dolores nesciunt ipsum?'
-        ]
+            'For my first solo project on the NorthCoders bootcamp, I was tasked with creating the back end for my NC News application. I used a range of technologies to complete this task and learnt a lot along the way, both syntactically and conceptually.',
+            'I used the Express.js framework to create the application and utilised the MVC (Model, View, Controller) design pattern to manage the different end points. These end points would allow users to utilise the most common HTTP methods, such as getting, posting, patching and deleting data.',
+            'Using environment variables, the app could be run in three different environments - the test environment, the development environment and the production environment. By having these different environments, I was able to switch between different data sets. This allowed me to test my code efficiently, as I was manipulating data that would re-seed each time I ran a test. It also meant that once the app was hosted along with its front end counterpart, I could safely run tests without the risk of making changes to users data.',
+            'Tables within these databases contained information that would be used for the NC News application, such as user profiles, articles, comments and topics. The models that interact with these tables and make queries would also check that the requests to these end points were valid, such as ensuring that comments are a valid length, for example.',
+            'I used a range of different libraries and packages that I hadn’t worked with before, such as the ‘dotenv’ library. This library loads environment variables into a current process, ensuring the security of a database once the project had been uploaded to GitHub.'
+        ],
+        githubLink: 'https://github.com/jaymckerracher/nc-news'
     }
 ];
 

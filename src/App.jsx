@@ -47,31 +47,34 @@ function App() {
     <>
       <div className="container">
         <nav>
-          <div className="navList">
-            <a href="#about" className='navLink'>
-              <span className='navHyphen'/>
-              About
-            </a>
-            <a href="#skills" className='navLink'>
-              <span className='navHyphen'/>
-              Skills
-            </a>
-            <a href="#projects" className='navLink'>
-              <span className='navHyphen'/>
-              Projects
-            </a>
-          </div>
-          <div className="navIcons">
-            <a href="https://www.linkedin.com/in/jay-mckerracher-8a086a2a6/" target='_blank'><FontAwesomeIcon icon={faLinkedin} className='icon' /></a>
-            <a href="https://github.com/jaymckerracher" target='_blank'><FontAwesomeIcon icon={faGithub} className='icon'/></a>
-            <div className="mail">
-              <FontAwesomeIcon icon={faEnvelope} className='icon mailButton' onClick={handleButtonClick}/>
-              <FontAwesomeIcon icon={faCopy} className='copyIcon'/>
-              <div className="emailAddress">
-                <p>jaymckerracher@gmail.com</p>
+          {/* <div className="navInnerContainer"> */}
+            <div className="navList">
+              <h2>Jump To:</h2>
+              <a href="#about" className='navLink'>
+                <span className='navHyphen'/>
+                About
+              </a>
+              <a href="#skills" className='navLink'>
+                <span className='navHyphen'/>
+                Skills
+              </a>
+              <a href="#projects" className='navLink'>
+                <span className='navHyphen'/>
+                Projects
+              </a>
+            </div>
+            <div className="navIcons">
+              <a href="https://www.linkedin.com/in/jay-mckerracher-8a086a2a6/" target='_blank'><FontAwesomeIcon icon={faLinkedin} className='icon' /></a>
+              <a href="https://github.com/jaymckerracher" target='_blank'><FontAwesomeIcon icon={faGithub} className='icon'/></a>
+              <div className="mail">
+                <FontAwesomeIcon icon={faEnvelope} className='icon mailButton' onClick={handleButtonClick}/>
+                <FontAwesomeIcon icon={faCopy} className='copyIcon'/>
+                <div className="emailAddress">
+                  <p>jaymckerracher@gmail.com</p>
+                </div>
               </div>
             </div>
-          </div>
+          {/* </div> */}
         </nav>
         <main>
           <div className="mainContainer">
