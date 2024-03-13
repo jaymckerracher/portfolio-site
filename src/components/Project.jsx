@@ -16,7 +16,7 @@ function Project ({project}) {
                 {desc.map(paragraph => {
                     return <p>{paragraph}</p>
                 })}
-                <p>To see more of the technologies used, along with the rest of the code, check out the GitHub repo <a href={githubLink}target="_blank">here</a>.</p>
+                <p>To see more of the technologies used, along with the rest of the code, check out the GitHub repo <a href={githubLink}target="_blank" className="projectLink">here</a>.</p>
                 <div className={fadeStyle} />
             </div>
             <ReadMoreButton setFadeStyle={setFadeStyle} setProjectStyling={setProjectStyling}/>
