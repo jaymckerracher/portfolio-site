@@ -24,7 +24,8 @@ const projects = [
             'Tables within these databases contained information that would be used for the NC News application, such as user profiles, articles, comments and topics. The models that interact with these tables and make queries would also check that the requests to these end points were valid, such as ensuring that comments are a valid length, for example.',
             'I used a range of different libraries and packages that I hadn’t worked with before, such as the ‘dotenv’ library. This library loads environment variables into a current process, ensuring the security of a database once the project had been uploaded to GitHub.'
         ],
-        githubLink: 'https://github.com/jaymckerracher/nc-news'
+        githubLink: 'https://github.com/jaymckerracher/nc-news',
+        hostedLink: 'https://jay-mckerracher-nc-news.onrender.com/api'
     },
     {
         title: 'NorthCoders News (Front End)',
@@ -37,7 +38,8 @@ const projects = [
             'While I’m not a designer by any means, I still had a great time seeing my project come to life. Being able to utilise the API that I had created a few weeks earlier felt great and gave me an insight into how real life applications work.',
             'Since the application allowed user input, I also had to implement features for authentication. For example, if you want to gain access to the app, you have to be a registered user. If a user wants to post a comment, they have to be logged in and the comment has to be a valid length.'
         ],
-        githubLink: 'https://github.com/jaymckerracher/fe-nc-news'
+        githubLink: 'https://github.com/jaymckerracher/fe-nc-news',
+        hostedLink: 'https://jaymckerracher-ncnews.netlify.app/'
     },
 ];
 

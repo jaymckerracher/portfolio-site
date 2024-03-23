@@ -17,19 +17,36 @@ body {
   justify-content: center;
 }
 
-.backgroundImgContainer {
-  left: 0;
-  right: 0;
+/* .backgroundImgContainer {
+  width: 100%;
+  height: 100%;
+  position: fixed;
   top: 0;
-  bottom: 0;
-  position: absolute;
-  z-index: 1;
+  left: 0;
+  overflow: hidden;
   background-image: url('src/assets/jason-ortego-TznjqhCHR9g-unsplash.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   filter: blur(4px) saturate(80%);
-  transform: scale(1.1)
+  transform: scale(1.1);
+  z-index: 1;
+} */
+
+.backgroundImgContainer {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  background-image: url('src/assets/mike-hindle-pYn_gdRqtiA-unsplash.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(4px);
+  transform: scale(1.05);
+  z-index: 1;
 }
 
 .container {
@@ -37,6 +54,7 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: #121212;
+  box-shadow: rgb(0, 0, 0) 0px 0px 30px;
   z-index: 2;
 }
 
@@ -74,6 +92,7 @@ body {
   border-bottom-left-radius: 28px;
   border-bottom-right-radius: 28px;
   background-color: #191919;
+  /* background: linear-gradient(to bottom right, #7b4397, #dc2430); */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -98,6 +117,7 @@ body {
   border-top-left-radius: 28px;
   border-top-right-radius: 28px;
   background-color: #191919;
+  /* background: linear-gradient(to bottom right, #7b4397, #dc2430); */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -218,44 +238,52 @@ body {
 main {
   width: 70%;
   height: 100%;
+  padding: 10% 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   overflow: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  scroll-behavior: smooth;
 }
 
 main::-webkit-scrollbar {
   display: none;
 }
 
-.mainContainer {
+/* .mainContainer {
   width: 90%;
   height: 90%;
+  position: relative;
+} */
+
+header {
+  width: 85%;
   position: relative;
 }
 
 .headerContent {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin: 0 7%;
+  margin: 0 5%;
 }
 
 header h1 {
   font-family: 'Oswald', sans-serif;
-  font-size: 4rem;
-  display: inline;
+  font-size: 60px;
+  width: 70%;
   text-align: center;
+  line-height: 100px;
 }
 
 header h2 {
   font-family: 'Oswald', sans-serif;
-  width: 380.36px;
-  margin: 0 7%;
+  width: 70%;
+  font-size: 25px;
   text-align: center;
-  transform: translate(0px, -10px);
+  line-height: 50px;
+  /* color: rgba(255, 255, 255, 0.725); */
 }
 
 .sectionHeader {
@@ -269,27 +297,91 @@ header img {
   border-radius: 50%;
   object-fit: cover;
   object-position: 50% 15%;
-  box-shadow: rgba(0, 0, 0) 0px 0px 30px;
   z-index: 2;
   padding: 5px;
   border: white solid 2px;
   background-color: #121212;
 }
 
+.bigDevImg {
+  position: absolute;
+  height: 100%;
+  right: 5%;
+}
+
 .customRule {
   width: 100%;
   height: 2px;
-  /* background-color: white; */
   border-radius: 1px;
   position: relative;
-  bottom: 25px;
+  /* bottom: 25px; */
   z-index: 1;
-  /* background: linear-gradient(90deg, #A9F1DF, #FFBBBB); */
   background: linear-gradient(90deg, #7b4397, #dc2430);
 }
 
-.mainContent {
+.nav2Border {
+  position: sticky;
+  top: 0;
+  padding: 2px;
+  border-radius: 500px;
+  background: linear-gradient(to bottom right, #7b4397, #dc2430);
+  z-index: 999;
+  box-shadow: rgba(0, 0, 0) 0px 0px 30px;
+  transition: border-radius 100ms, padding 100ms, width 100ms;
+  margin-top: 70px;
+  width: 90%;
+}
+
+.nav2BorderTop {
+  border-radius: 0px;
+  padding: 0 0 2px 0;
+  z-index: 999;
   width: 100%;
+}
+
+.nav2 {
+  width: 100%;
+  background-color: #191919;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  border-radius: 500px;
+  transition: border-radius 100ms, padding 100ms;
+}
+
+.nav2Top {
+  border-radius: 0px;
+  padding: 20px 80px;
+}
+
+.nav2List {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  font-size: 20px;
+}
+
+.nav2List a {
+  text-decoration: none;
+  color: white;
+  margin-right: 40px;
+}
+
+.nav2Icons {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.nav2Icon {
+  margin-left: 20px;
+  font-size: 30px;
+  color: white;
+}
+
+.mainContent {
+  width: 75%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -297,8 +389,8 @@ header img {
 }
 
 section {
-  width: 80%;
-  margin-top: 100px;
+  width: 100%;
+  padding-top: 100px;
 }
 
 section .customRule {
@@ -315,7 +407,7 @@ section .customRule {
 
 .aboutContainer p {
   margin-top: 20px;
-  width: 90%;
+  width: 80%;
 }
 
 section ul {
@@ -329,7 +421,7 @@ section ul {
   gap: 75px 0;
   padding: 20px;
   justify-content: center;
-  width: 90%;
+  width: 80%;
 }
 
 .gridFlex {
@@ -340,7 +432,7 @@ section ul {
 }
 
 .grid-item {
-  margin-right: 20px;
+  padding-right: 10%;
 }
 
 .skillsFlexContainer {
@@ -349,8 +441,8 @@ section ul {
   align-items: center;
   width: 100%;
   height: 100%;
-  min-width: 136.59px;
-  min-height: 136.59px;
+  min-width: 147px;
+  min-height: 147px;
   background: linear-gradient(to bottom right, #7b4397, #dc2430);
   box-shadow: rgba(0, 0, 0) 0px 0px 30px;
   border-radius: 16px;
@@ -414,7 +506,7 @@ section ul {
 }
 
 .projectMain {
-  width: 100%;
+  width: 90%;
   padding: 30px;
   overflow: hidden;
   position: relative;
@@ -430,11 +522,28 @@ section ul {
   margin-bottom: 10px;
 }
 
-.projectLink {
+.projectURL {
   color: white;
   text-decoration: none;
   position: relative;
   z-index: 1;
+}
+
+.projectLink {
+  margin-top: 30px;
+  margin-left: 7%;
+  display: flex;
+  align-items: center;
+}
+
+.projectLinkIcon {
+  font-size: 30px;
+  width: 30px;
+  margin-right: 20px;
+}
+
+.projectOutgoingIcon {
+  margin-left: 7px;
 }
 
 @property --myColor1 {
@@ -449,7 +558,7 @@ section ul {
   inherits: false;
 }
 
-.projectLink::after {
+.projectURL::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -462,7 +571,7 @@ section ul {
   transition: height 300ms, border-radius 300ms, background-color 300ms, --myColor1 300ms, --myColor2 300ms;
 }
 
-.projectLink:hover::after {
+.projectURL:hover::after {
   height: 10px;
   --myColor1: #7b4397;
   --myColor2: #dc2430;
@@ -470,16 +579,13 @@ section ul {
 }
 
 .projectImgContainer {
-  width: 50%;
+  width: 40%;
   aspect-ratio : 1 / 1;
   overflow: hidden;
   position: relative;
   border-radius: 1em;
-  padding: 10px;
-  box-shadow: rgba(0, 0, 0) 0px 0px 30px;
   float: left;
-  margin: 0 18px 10px 0;
-  z-index: 999;
+  margin: 0 15px 10px 0;
 }
 
 #plotTwistImg {
@@ -564,10 +670,110 @@ footer p {
   font-size: 75%;
 }
 
+.nav3Strip {
+  margin-top: 50px;
+}
+
+.nav3StripIcon {
+  font-size: 40px;
+}
+
+.nav3Blur {
+  z-index: 999;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(4px);
+  transition: backdrop-filter 500ms, z-index 500ms;
+}
+
+.nav3BlurHide {
+  backdrop-filter: blur(0px);
+  z-index: -1;
+}
+
+.nav3Border {
+  padding: 0 2px 2px 2px;
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(to bottom right, #7b4397, #dc2430);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  transition: transform 500ms;
+}
+
+.nav3BorderHide {
+  transform: translateY(-100%);
+}
+
+.nav3 {
+  width: 100%;
+  height: 100%;
+  background-color: #191919;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+}
+
+.nav3List {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  font-size: 30px;
+  height: 80%;
+}
+
+.nav3List li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  margin: 40px 0;
+  position: relative;
+}
+
+.nav3List li ::after {
+  content: '';
+  width: 50px;
+  height: 2px;
+  background-color: white;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav3List a {
+  text-decoration: none;
+  color: white;
+}
+
+.nav3Icons {
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav3Icon {
+  color: white;
+  font-size: 50px;
+  margin: 0 20px;
+}
+
+/* @keyframes nav3SlideOut {
+  50% {
+    transform: translateY(-100%);
+    filter: blur(0);
+  }
+  100% {
+    display: none;
+  }
+} */
 
 /* Media Queries */
 
-/* 1260+ */
 @media (min-width: 1261px) {
   .container {
     width: 75%;
@@ -576,7 +782,6 @@ footer p {
   }
 }
 
-/* -1260 */
 @media (max-width: 1260px) {
   .container {
     width: 100%;
@@ -591,26 +796,20 @@ footer p {
 }
 
 @media (max-width: 1150px) {
-  .headerContent img {
+  .bigDevImg {
     display: none;
   }
   .smallDevImg {
     margin-top: 30px;
-  }
-  .customRule {
-    bottom: 0;
-    margin-bottom: 20px;
   }
   .headerContent{
     justify-content: center;
   }
   header h1 {
     width: 100%;
-    text-align: center;
   }
   header h2 {
     width: 100%;
-    margin: 0;
   }
   header {
     display: flex;
@@ -618,46 +817,90 @@ footer p {
     justify-content: center;
     align-items: center;
   }
-  .projectMain {
+  /* .projectMain {
     padding: 30px 0;
-  }
-  section {
+  } */
+  /* section {
     margin-top: 50px;
+  } */
+}
+
+@media (min-width: 1000px) {
+  .nav2Border {
+    display: none;
   }
 }
 
-/* 800-1260 */
-@media (min-width: 801px) and (max-width: 1260px) {
-
-}
-
-/* -800 */
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
   .navContainer {
     background-color: white;
     display: none;
   }
   main {
     width: 100%;
+    padding: 0;
+  }
+  .nav2Border {
+    width: 80%;
+  }
+  .nav2BorderTop {
+    width: 100%;
   }
   section {
-    width: 100%;
+    width: 90%;
   }
   .skillsFlexContainer {
     min-width: 100px;
     min-height: 100px;
   }
   .skillIcon {
-    font-size: 30px;
+    font-size: 40px;
+  }
+  .container {
+    padding: 0;
+  }
+  header {
+    margin-top: 50px;
+  }
+  header h1 {
+    margin-top: 20px;
+  }
+  footer {
+    margin-bottom: 50px;
   }
 }
 
-/* 450-800 */
-@media (min-width: 451px) and (max-width: 800px) {
-
+@media (min-width: 801px) {
+  .nav3Strip {
+    display: none;
+  }
+  .nav3Blur {
+    display: none;
+  }
 }
 
-/* -450 */
-@media (max-width: 450px) {
-
+@media (max-width: 800px) {
+  .aboutContainer p {
+    width: 90%;
+  }
+  .grid-container {
+    width: 80%;
+    padding: 20px 0;
+  }
+  .projectMain {
+    width: 100%;
+    padding: 30px 0;
+  }
+  .nav2Border {
+    display: none;
+  }
+  section {
+    margin-top: 50px;
+  }
+  .mainContent {
+    width: 90%;
+  }
+  header {
+    width: 80%;
+  }
 }
