@@ -14,6 +14,7 @@ body {
 #root {
   height: 100vh;
   display: flex;
+  background-color: #0a0a0a;
   justify-content: center;
 }
 
@@ -44,9 +45,35 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: blur(4px);
   transform: scale(1.05);
   z-index: 1;
+}
+
+@property --secondaryColour1 {
+  syntax: '<color>';
+  initial-value: #7b4397;
+  inherits: false;
+}
+
+@property --secondaryColour2 {
+  syntax: '<color>';
+  initial-value: #dc2430;
+  inherits: false;
+}
+
+.secondaryColourB {
+  --secondaryColour1: #dc2430;
+  --secondaryColour2: #a8ff78;
+}
+
+.secondaryColourC {
+  --secondaryColour1: #a8ff78;
+  --secondaryColour2: #78ffd6;
+}
+
+.secondaryColourD {
+  --secondaryColour1: #78ffd6;
+  --secondaryColour2: #ee9ca7;
 }
 
 .container {
@@ -69,12 +96,13 @@ body {
 .upperNav {
   height: 65%;
   width: 100%;
-  background: linear-gradient(to bottom right, #7b4397, #dc2430);
-  box-shadow: rgb(0, 0, 0) 0px 0px 30px;
+  background: linear-gradient(to bottom right, var(--secondaryColour1), var(--secondaryColour2));
+  /* box-shadow: rgb(0, 0, 0) 0px 0px 30px; */
+  position: relative;
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
   padding: 0 2px 2px 2px;
-  transition: height 500ms;
+  transition: height 500ms, --secondaryColour1 500ms, --secondaryColour2 500ms;
 }
 
 .upperNav:hover {
@@ -92,7 +120,6 @@ body {
   border-bottom-left-radius: 28px;
   border-bottom-right-radius: 28px;
   background-color: #191919;
-  /* background: linear-gradient(to bottom right, #7b4397, #dc2430); */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -102,13 +129,13 @@ body {
 .lowerNav {
   height: 30%;
   width: 100%;
-  background: linear-gradient(to bottom right, #7b4397, #dc2430);
+  background: linear-gradient(to bottom right, var(--secondaryColour1), var(--secondaryColour2));
   box-shadow: rgb(0, 0, 0) 0px 0px 30px;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   padding: 2px 2px 0 2px;
   filter: blur(0px);
-  transition: height 500ms, filter 500ms;
+  transition: height 500ms, filter 500ms, --secondaryColour1 500ms, --secondaryColour2 500ms;
 }
 
 .lowerNavInnerContainer {
@@ -117,7 +144,6 @@ body {
   border-top-left-radius: 28px;
   border-top-right-radius: 28px;
   background-color: #191919;
-  /* background: linear-gradient(to bottom right, #7b4397, #dc2430); */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -314,9 +340,9 @@ header img {
   height: 2px;
   border-radius: 1px;
   position: relative;
-  /* bottom: 25px; */
   z-index: 1;
-  background: linear-gradient(90deg, #7b4397, #dc2430);
+  background: linear-gradient(to bottom right, var(--secondaryColour1), var(--secondaryColour2));
+  transition: --secondaryColour1 500ms, --secondaryColour2 500ms;
 }
 
 .nav2Border {
@@ -324,10 +350,10 @@ header img {
   top: 0;
   padding: 2px;
   border-radius: 500px;
-  background: linear-gradient(to bottom right, #7b4397, #dc2430);
+  background: linear-gradient(to bottom right, var(--secondaryColour1), var(--secondaryColour2));
   z-index: 999;
   box-shadow: rgba(0, 0, 0) 0px 0px 30px;
-  transition: border-radius 100ms, padding 100ms, width 100ms;
+  transition: border-radius 100ms, padding 100ms, width 100ms, --secondaryColour1 500ms, --secondaryColour2 500ms;
   margin-top: 70px;
   width: 90%;
 }
@@ -443,10 +469,11 @@ section ul {
   height: 100%;
   min-width: 147px;
   min-height: 147px;
-  background: linear-gradient(to bottom right, #7b4397, #dc2430);
+  background: linear-gradient(to bottom right, var(--secondaryColour1), var(--secondaryColour2));
   box-shadow: rgba(0, 0, 0) 0px 0px 30px;
   border-radius: 16px;
   padding: 2px;
+  transition: --secondaryColour1 500ms, --secondaryColour2 500ms;
 }
 
 .skillsInnerContainer {
@@ -546,13 +573,13 @@ section ul {
   margin-left: 7px;
 }
 
-@property --myColor1 {
+@property --linkColor1 {
   syntax: '<color>';
   initial-value: white;
   inherits: false;
 }
 
-@property --myColor2 {
+@property --linkColor2 {
   syntax: '<color>';
   initial-value: white;
   inherits: false;
@@ -561,20 +588,20 @@ section ul {
 .projectURL::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -3px;
   left: 0;
   right: 0;
-  height: 2px;
+  height: 1px;
   border-radius: 0.5px;
   z-index: -1;
-  background: linear-gradient(to bottom right, var(--myColor1), var(--myColor2));
-  transition: height 300ms, border-radius 300ms, background-color 300ms, --myColor1 300ms, --myColor2 300ms;
+  background: linear-gradient(to bottom right, var(--linkColor1), var(--linkColor2));
+  transition: height 300ms, border-radius 300ms, --linkColor1 300ms, --linkColor2 300ms;
 }
 
 .projectURL:hover::after {
-  height: 10px;
-  --myColor1: #7b4397;
-  --myColor2: #dc2430;
+  height: 4px;
+  --linkColor1: #78ffd6;
+  --linkColor2: #ee9ca7;
   border-radius: 2.5px;
 }
 
@@ -696,10 +723,10 @@ footer p {
   padding: 0 2px 2px 2px;
   width: 100%;
   height: 70%;
-  background: linear-gradient(to bottom right, #7b4397, #dc2430);
+  background: linear-gradient(to bottom right, var(--secondaryColour1), var(--secondaryColour2));
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-  transition: transform 500ms;
+  transition: transform 500ms, --secondaryColour1 500ms, --secondaryColour2 500ms;
 }
 
 .nav3BorderHide {
@@ -762,18 +789,6 @@ footer p {
   margin: 0 20px;
 }
 
-/* @keyframes nav3SlideOut {
-  50% {
-    transform: translateY(-100%);
-    filter: blur(0);
-  }
-  100% {
-    display: none;
-  }
-} */
-
-/* Media Queries */
-
 @media (min-width: 1261px) {
   .container {
     width: 75%;
@@ -817,17 +832,15 @@ footer p {
     justify-content: center;
     align-items: center;
   }
-  /* .projectMain {
-    padding: 30px 0;
-  } */
-  /* section {
-    margin-top: 50px;
-  } */
 }
 
 @media (min-width: 1000px) {
   .nav2Border {
     display: none;
+  }
+  section {
+    padding-top: 20px;
+    margin-top: 80px;
   }
 }
 
@@ -895,7 +908,8 @@ footer p {
     display: none;
   }
   section {
-    margin-top: 50px;
+    padding-top: 20px;
+    margin-top: 80px;
   }
   .mainContent {
     width: 90%;

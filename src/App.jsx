@@ -42,27 +42,60 @@ function App() {
     }
   };
 
+  const nav2Ref = useRef(null);
   const [nav2BorderStyle, setNav2BorderStyle] = useState('nav2Border');
   const [nav2Style, setNav2Style] = useState('nav2');
+
+  const aboutRef = useRef(null);
+
+  const skillsRef = useRef(null);
+  const projectsRef = useRef(null);
 
   const [nav3BlurStyle, setNav3BlurStyle] = useState('nav3Blur nav3BlurHide');
   const [nav3BorderStyle, setNav3BorderStyle] = useState('nav3Border nav3BorderHide');
 
-  const nav2Ref = useRef(null);
-  const aboutRef = useRef(null);
-  const skillsRef = useRef(null);
-  const projectsRef = useRef(null)
 
   useEffect(() => {
     const handleScroll = () => {
-      const { top } = nav2Ref.current.getBoundingClientRect();
-      if (top <= 0) {
+      // handle nav2 reaching top of screen
+      const nav2Top = nav2Ref.current.getBoundingClientRect().top;
+      if (nav2Top <= 0) {
         setNav2BorderStyle('nav2Border nav2BorderTop');
         setNav2Style('nav2 nav2Top');
       }
       else {
         setNav2BorderStyle('nav2Border');
         setNav2Style('nav2');
+      }
+
+      // handle about reaching top of screen
+      const aboutTop = aboutRef.current.getBoundingClientRect().top;
+      const skillsTop = skillsRef.current.getBoundingClientRect().top;
+      const projectsTop = projectsRef.current.getBoundingClientRect().top;
+
+      const secondaryElements = document.getElementsByClassName('secondaryColour');
+      if (aboutTop > 0) {
+        [...secondaryElements].forEach(element => {
+          element.classList.remove('secondaryColourB', 'secondaryColourC', 'secondaryColourD');
+        })
+      }
+      else if (projectsTop <= 0) {
+        [...secondaryElements].forEach(element => {
+          element.classList.add('secondaryColourD');
+          element.classList.remove('secondaryColourB', 'secondaryColourC');
+        })
+      }
+      else if (skillsTop <= 0) {
+        [...secondaryElements].forEach(element => {
+          element.classList.add('secondaryColourC');
+          element.classList.remove('secondaryColourB', 'secondaryColourD');
+        })
+      }
+      else if (aboutTop <= 0) {
+        [...secondaryElements].forEach(element => {
+          element.classList.add('secondaryColourB');
+          element.classList.remove('secondaryColourC', 'secondaryColourD');
+        })
       }
     };
     
@@ -77,7 +110,7 @@ function App() {
       <div className="backgroundImgContainer" />
       <div className="container">
         <div className="navContainer">
-          <nav className='upperNav'>
+          <nav className='upperNav secondaryColour'>
             <div className="upperNavInnerContainer">
               <h2 className='navHeading'>Jump To:</h2>
               <div className="navList">
@@ -87,7 +120,7 @@ function App() {
               </div>
             </div>
           </nav>
-          <nav className='lowerNav'>
+          <nav className='lowerNav secondaryColour'>
             <div className="lowerNavInnerContainer">
               <h2 className='navHeading'>Other Links:</h2>
               <div className="navIcons">
@@ -109,15 +142,12 @@ function App() {
             <img src="src/assets/profile.jpeg" alt="Profile Image" className='bigDevImg'/>
             <img src="src/assets/profile.jpeg" alt="Profile Image" className='smallDevImg'/>
             <h1>Jay McKerracher</h1>
-            <div className="customRule" />
+            <div className="customRule secondaryColour" />
             <h2>Junior Software Engineer</h2>
           </header>
-          <div className={nav2BorderStyle} ref={nav2Ref}>
+          <div className={`${nav2BorderStyle} secondaryColour`} ref={nav2Ref}>
             <nav className={nav2Style}>
               <ul className='nav2List'>
-                {/* <li><a onClick={() => {
-                  handleScrollBehaviour(aboutRef)
-                }}>About</a></li> */}
                 <li><a href='#about'>About</a></li>
                 <li><a href='#skills'>Skills</a></li>
                 <li><a href='#projects'>Projects</a></li>
@@ -133,8 +163,8 @@ function App() {
             <FontAwesomeIcon icon={faBars} className='nav3StripIcon nav3Clickable'/>
           </div>
           <div className={`${nav3BlurStyle} nav3Clickable`} onClick={handleLinkClick}>
-            <div className={nav3BorderStyle}>
-              <div className="nav3">
+            <div className={`${nav3BorderStyle} secondaryColour`}>
+              <nav className="nav3">
                 <ul className='nav3List'>
                   <li onClick={handleLinkClick}><a href='#about' className='nav3Clickable'>About</a></li>
                   <li onClick={handleLinkClick}><a href='#skills' className='nav3Clickable'>Skills</a></li>
@@ -145,13 +175,13 @@ function App() {
                   <a href="https://github.com/jaymckerracher" target='_blank'><FontAwesomeIcon icon={faGithub} className='nav3Icon'/></a>
                   <FontAwesomeIcon icon={faEnvelope} className='nav3Icon' onClick={handleButtonClick}/>
                 </div>
-              </div>
+              </nav>
             </div>
           </div>
           <div className="mainContent">
             <section id='about' ref={aboutRef}>
               <h2 className='sectionHeader'>About</h2>
-              <div className="customRule" />
+              <div className="customRule secondaryColour" />
               <div className="aboutContainer">
                 <p>
                   The retail industry has taught me so much over the last few years; I have learnt how to effectively communicate, work as part of a large team, and deal with unexpected events. I’ve had the opportunity to manage a team of people and also had the pleasure of working abroad. I really enjoyed my time in the retail world.
@@ -166,7 +196,7 @@ function App() {
             </section>
             <section id='skills' ref={skillsRef}>
               <h2 className='sectionHeader'>Skills</h2>
-              <div className="customRule" />
+              <div className="customRule secondaryColour" />
               <div className="gridFlex">
                 <div className="grid-container">
                   <div className="grid-item">
@@ -176,7 +206,7 @@ function App() {
                     </ul>
                   </div>
                   <div>
-                    <div className="skillsFlexContainer">
+                    <div className="skillsFlexContainer secondaryColour">
                       <div className="skillsInnerContainer">
                         <FontAwesomeIcon icon={faJsSquare} className='skillIcon' />
                       </div>
@@ -192,7 +222,7 @@ function App() {
                     </ul>
                   </div>
                   <div>
-                    <div className="skillsFlexContainer">
+                    <div className="skillsFlexContainer secondaryColour">
                       <div className="skillsInnerContainer">
                         <img src="src/assets/sql.png" alt="SQL" className='skillsImg'/>
                         <img src="src/assets/psql.png" alt="PSQL" className='skillsImg'/>
@@ -210,7 +240,7 @@ function App() {
                     </ul>
                   </div>
                   <div>
-                    <div className="skillsFlexContainer">
+                    <div className="skillsFlexContainer secondaryColour">
                       <div className="skillsInnerContainer">
                         <FontAwesomeIcon icon={faHtml5} className='skillIcon oddIcon'/>
                         <FontAwesomeIcon icon={faCss3Alt} className='skillIcon oddIcon' />
@@ -228,7 +258,7 @@ function App() {
                     </ul>
                   </div>
                   <div>
-                    <div className="skillsFlexContainer">
+                    <div className="skillsFlexContainer secondaryColour">
                       <div className="skillsInnerContainer">
                         <img src="src/assets/jest.png" alt="Jest" className='skillsImg'/>
                       </div>
@@ -242,7 +272,7 @@ function App() {
                     </ul>
                   </div>
                   <div>
-                    <div className="skillsFlexContainer">
+                    <div className="skillsFlexContainer secondaryColour">
                       <div className="skillsInnerContainer">
                         <FontAwesomeIcon icon={faCloudflare} className='skillIcon' />
                         <img src="src/assets/netlify.svg" alt="Netlify" className='skillsImg'/>
@@ -259,7 +289,7 @@ function App() {
                     </ul>
                   </div>
                   <div>
-                    <div className='skillsFlexContainer'>
+                    <div className='skillsFlexContainer secondaryColour'>
                       <div className="skillsInnerContainer">
                         <img src="src/assets/agile.png" alt="Agile" className='skillsImg'/>
                         <img src="src/assets/paired.png" alt="Agile" className='skillsImg'/>
@@ -271,7 +301,7 @@ function App() {
             </section>
             <section id='projects' ref={projectsRef}>
               <h2 className='sectionHeader'>Projects</h2>
-              <div className="customRule" />
+              <div className="customRule secondaryColour" />
               <Project project={projects[0]}/>
               <Project project={projects[1]}/>
               <Project project={projects[2]}/>
