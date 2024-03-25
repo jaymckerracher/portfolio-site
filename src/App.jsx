@@ -139,8 +139,8 @@ function App() {
         </div>
         <main id='main'>
           <header>
-            <img src="src/assets/profile.jpeg" alt="Profile Image" className='bigDevImg'/>
-            <img src="src/assets/profile.jpeg" alt="Profile Image" className='smallDevImg'/>
+            <img src="/portfolio-site/src/assets/profile.jpeg" alt="Profile Image" className='bigDevImg'/>
+            <img src="/portfolio-site/src/assets/profile.jpeg" alt="Profile Image" className='smallDevImg'/>
             <h1>Jay McKerracher</h1>
             <div className="customRule secondaryColour" />
             <h2>Junior Software Engineer</h2>
@@ -224,8 +224,8 @@ function App() {
                   <div>
                     <div className="skillsFlexContainer secondaryColour">
                       <div className="skillsInnerContainer">
-                        <img src="src/assets/sql.png" alt="SQL" className='skillsImg'/>
-                        <img src="src/assets/psql.png" alt="PSQL" className='skillsImg'/>
+                        <img src="/portfolio-site/src/assets/sql.png" alt="SQL" className='skillsImg'/>
+                        <img src="/portfolio-site/src/assets/psql.png" alt="PSQL" className='skillsImg'/>
                       </div>
                     </div>
                   </div>
@@ -245,7 +245,7 @@ function App() {
                         <FontAwesomeIcon icon={faHtml5} className='skillIcon oddIcon'/>
                         <FontAwesomeIcon icon={faCss3Alt} className='skillIcon oddIcon' />
                         <FontAwesomeIcon icon={faReact} className='skillIcon' />
-                        <img src="src/assets/lighthouse.svg" alt="Lighthouse" className='skillsImg'/>
+                        <img src="/portfolio-site/src/assets/lighthouse.svg" alt="Lighthouse" className='skillsImg'/>
                       </div>
                     </div>
                   </div>
@@ -260,7 +260,7 @@ function App() {
                   <div>
                     <div className="skillsFlexContainer secondaryColour">
                       <div className="skillsInnerContainer">
-                        <img src="src/assets/jest.png" alt="Jest" className='skillsImg'/>
+                        <img src="/portfolio-site/src/assets/jest.png" alt="Jest" className='skillsImg'/>
                       </div>
                     </div>
                   </div>
@@ -275,7 +275,7 @@ function App() {
                     <div className="skillsFlexContainer secondaryColour">
                       <div className="skillsInnerContainer">
                         <FontAwesomeIcon icon={faCloudflare} className='skillIcon' />
-                        <img src="src/assets/netlify.svg" alt="Netlify" className='skillsImg'/>
+                        <img src="/portfolio-site/src/assets/netlify.svg" alt="Netlify" className='skillsImg'/>
                       </div>
                     </div>
                   </div>
@@ -291,8 +291,8 @@ function App() {
                   <div>
                     <div className='skillsFlexContainer secondaryColour'>
                       <div className="skillsInnerContainer">
-                        <img src="src/assets/agile.png" alt="Agile" className='skillsImg'/>
-                        <img src="src/assets/paired.png" alt="Agile" className='skillsImg'/>
+                        <img src="/portfolio-site/src/assets/agile.png" alt="Agile" className='skillsImg'/>
+                        <img src="/portfolio-site/src/assets/paired.png" alt="Agile" className='skillsImg'/>
                       </div>
                     </div>
                   </div>
