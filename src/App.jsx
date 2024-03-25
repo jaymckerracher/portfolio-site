@@ -139,8 +139,8 @@ function App() {
         </div>
         <main id='main'>
           <header>
-            <img src="./assets/profile.jpeg" alt="Profile Image" className='bigDevImg'/>
-            <img src="./assets/profile.jpeg" alt="Profile Image" className='smallDevImg'/>
+            <img src="./assets/profile.jpg" alt="Profile Image" className='bigDevImg'/>
+            <img src="./assets/profile.jpg" alt="Profile Image" className='smallDevImg'/>
             <h1>Jay McKerracher</h1>
             <div className="customRule secondaryColour" />
             <h2>Junior Software Engineer</h2>
