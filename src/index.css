@@ -41,7 +41,7 @@ body {
   top: 0;
   left: 0;
   overflow: hidden;
-  background-image: url('src/assets/mike-hindle-pYn_gdRqtiA-unsplash.jpg');
+  background-image: url('./assets/mike-hindle-pYn_gdRqtiA-unsplash.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
