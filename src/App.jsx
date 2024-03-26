@@ -8,6 +8,8 @@ import { useRef, useEffect, useState } from 'react';
 import Project from './components/Project';
 import projects from './projects';
 
+import profileImg from "./assets/profile.jpeg";
+
 function App() {
   const handleButtonClick = async () => {
     try {
@@ -139,8 +141,8 @@ function App() {
         </div>
         <main id='main'>
           <header>
-            <img src="./assets/profile.jpeg" alt="Profile Image" className='bigDevImg'/>
-            <img src="./assets/profile.jpeg" alt="Profile Image" className='smallDevImg'/>
+            <img src={profileImg} alt="Profile Image" className='bigDevImg'/>
+            <img src="src/assets/profile.jpeg" alt="Profile Image" className='smallDevImg'/>
             <h1>Jay McKerracher</h1>
             <div className="customRule secondaryColour" />
             <h2>Junior Software Engineer</h2>
