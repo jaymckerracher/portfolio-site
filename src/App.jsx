@@ -139,9 +139,8 @@ function App() {
         </div>
         <main id='main'>
           <header>
-            <img src="src/assets/mike-hindle-pYn_gdRqtiA-unsplash.jpg" alt="Profile Image" className='bigDevImg'/>
-            <img src="./assets/profile.jpeg" alt="Profile Image" className='smallDevImg'/>
-            <img src="https://i.natgeofe.com/n/4f5aaece-3300-41a4-b2a8-ed2708a0a27c/domestic-dog_thumb_3x2.jpg" alt="" />
+            <img src="src/assets/profile.jpeg" alt="Profile Image" className='bigDevImg'/>
+            <img src="src/assets/profile.jpeg" alt="Profile Image" className='smallDevImg'/>
             <h1>Jay McKerracher</h1>
             <div className="customRule secondaryColour" />
             <h2>Junior Software Engineer</h2>
