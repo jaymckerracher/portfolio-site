@@ -800,7 +800,7 @@ footer p {
 
 @media (max-width: 1260px) {
   .container {
-    width: 100%;
+    min-width: 100%;
     padding: 0 5%;
   }
 }
@@ -883,6 +883,7 @@ footer p {
   }
   .container {
     padding: 0;
+    height: 100vh;
   }
   header {
     margin-top: 50px;
