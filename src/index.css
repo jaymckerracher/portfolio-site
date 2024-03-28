@@ -852,6 +852,7 @@ footer p {
   }
   header h1 {
     margin-top: 20px;
+    white-space: wrap;
   }
   header {
     display: flex;
