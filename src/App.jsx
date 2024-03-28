@@ -151,13 +151,17 @@ function App() {
         </div>
         <main id='main'>
           <header>
-            {/* <div className="headerImgBorder"> */}
+            <div className="headerImgBorder smallDevImgBorder secondaryColour">
+              <img src={profileImg} alt="Profile Image" className='smallDevImg'/>
+            </div>
+            <div className="headerContent">
+              <h1>Jay McKerracher</h1>
+              <div className="customRule secondaryColour headerRule" />
+              <h2>Junior Software Engineer</h2>
+            </div>
+            <div className="headerImgBorder bigDevImgBorder secondaryColour">
               <img src={profileImg} alt="Profile Image" className='bigDevImg'/>
-            {/* </div> */}
-            <img src={profileImg} alt="Profile Image" className='smallDevImg'/>
-            <h1>Jay McKerracher</h1>
-            <div className="customRule secondaryColour headerRule" />
-            <h2>Junior Software Engineer</h2>
+            </div>
           </header>
           <div className={`${nav2BorderStyle} secondaryColour`} ref={nav2Ref}>
             <nav className={nav2Style}>
