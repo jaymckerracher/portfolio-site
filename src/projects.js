@@ -1,7 +1,6 @@
 const projects = [
     {
         title: 'PlotTwist',
-        imgSrc: '/portfolio-site/src/assets/plottwist.png',
         imgAlt: 'PlotTwist',
         imgId: 'plotTwistImg',
         desc: [
@@ -14,7 +13,6 @@ const projects = [
     },
     {
         title: 'NorthCoders News (Back End)',
-        imgSrc: '/portfolio-site/src/assets/nc-news-back.png',
         imgAlt: 'NC News Back End',
         imgId: 'NcBackImg',
         desc: [
@@ -29,7 +27,6 @@ const projects = [
     },
     {
         title: 'NorthCoders News (Front End)',
-        imgSrc: '/portfolio-site/src/assets/nc-news-front.png',
         imgAlt: 'NC News Front End',
         imgId: 'NcFrontImg',
         desc: [

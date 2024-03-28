@@ -9,6 +9,16 @@ import Project from './components/Project';
 import projects from './projects';
 
 import profileImg from "./assets/profile.jpeg";
+import sqlImg from "./assets/sql.png";
+import psqlImg from "./assets/psql.png";
+import lighthouseImg from "./assets/lighthouse.svg";
+import jestImg from "./assets/jest.png";
+import netlifyImg from "./assets/netlify.svg";
+import agileImg from "./assets/agile.png";
+import pairedImg from "./assets/paired.png";
+import plottwistImg from "./assets/plottwist.png";
+import ncNewsBackImg from "./assets/nc-news-back.png";
+import ncNewsFrontImg from "./assets/nc-news-front.png";
 
 function App() {
   const handleButtonClick = async () => {
@@ -83,20 +93,20 @@ function App() {
       }
       else if (projectsTop <= 0) {
         [...secondaryElements].forEach(element => {
-          element.classList.add('secondaryColourD');
           element.classList.remove('secondaryColourB', 'secondaryColourC');
+          element.classList.add('secondaryColourD');
         })
       }
       else if (skillsTop <= 0) {
         [...secondaryElements].forEach(element => {
-          element.classList.add('secondaryColourC');
           element.classList.remove('secondaryColourB', 'secondaryColourD');
+          element.classList.add('secondaryColourC');
         })
       }
       else if (aboutTop <= 0) {
         [...secondaryElements].forEach(element => {
-          element.classList.add('secondaryColourB');
           element.classList.remove('secondaryColourC', 'secondaryColourD');
+          element.classList.add('secondaryColourB');
         })
       }
     };
@@ -141,11 +151,17 @@ function App() {
         </div>
         <main id='main'>
           <header>
-            <img src={profileImg} alt="Profile Image" className='bigDevImg'/>
-            <img src="src/assets/profile.jpeg" alt="Profile Image" className='smallDevImg'/>
-            <h1>Jay McKerracher</h1>
-            <div className="customRule secondaryColour" />
-            <h2>Junior Software Engineer</h2>
+            <div className="headerImgBorder smallDevImgBorder secondaryColour">
+              <img src={profileImg} alt="Profile Image" className='smallDevImg'/>
+            </div>
+            <div className="headerContent">
+              <h1>Jay McKerracher</h1>
+              <div className="customRule secondaryColour headerRule" />
+              <h2>Junior Software Engineer</h2>
+            </div>
+            <div className="headerImgBorder bigDevImgBorder secondaryColour">
+              <img src={profileImg} alt="Profile Image" className='bigDevImg'/>
+            </div>
           </header>
           <div className={`${nav2BorderStyle} secondaryColour`} ref={nav2Ref}>
             <nav className={nav2Style}>
@@ -226,8 +242,8 @@ function App() {
                   <div>
                     <div className="skillsFlexContainer secondaryColour">
                       <div className="skillsInnerContainer">
-                        <img src="/portfolio-site/src/assets/sql.png" alt="SQL" className='skillsImg'/>
-                        <img src="/portfolio-site/src/assets/psql.png" alt="PSQL" className='skillsImg'/>
+                        <img src={sqlImg} alt="SQL" className='skillsImg'/>
+                        <img src={psqlImg} alt="PSQL" className='skillsImg'/>
                       </div>
                     </div>
                   </div>
@@ -247,7 +263,7 @@ function App() {
                         <FontAwesomeIcon icon={faHtml5} className='skillIcon oddIcon'/>
                         <FontAwesomeIcon icon={faCss3Alt} className='skillIcon oddIcon' />
                         <FontAwesomeIcon icon={faReact} className='skillIcon' />
-                        <img src="/portfolio-site/src/assets/lighthouse.svg" alt="Lighthouse" className='skillsImg'/>
+                        <img src={lighthouseImg} alt="Lighthouse" className='skillsImg'/>
                       </div>
                     </div>
                   </div>
@@ -262,7 +278,7 @@ function App() {
                   <div>
                     <div className="skillsFlexContainer secondaryColour">
                       <div className="skillsInnerContainer">
-                        <img src="/portfolio-site/src/assets/jest.png" alt="Jest" className='skillsImg'/>
+                        <img src={jestImg} alt="Jest" className='skillsImg'/>
                       </div>
                     </div>
                   </div>
@@ -277,7 +293,7 @@ function App() {
                     <div className="skillsFlexContainer secondaryColour">
                       <div className="skillsInnerContainer">
                         <FontAwesomeIcon icon={faCloudflare} className='skillIcon' />
-                        <img src="/portfolio-site/src/assets/netlify.svg" alt="Netlify" className='skillsImg'/>
+                        <img src={netlifyImg} alt="Netlify" className='skillsImg'/>
                       </div>
                     </div>
                   </div>
@@ -293,8 +309,8 @@ function App() {
                   <div>
                     <div className='skillsFlexContainer secondaryColour'>
                       <div className="skillsInnerContainer">
-                        <img src="/portfolio-site/src/assets/agile.png" alt="Agile" className='skillsImg'/>
-                        <img src="/portfolio-site/src/assets/paired.png" alt="Agile" className='skillsImg'/>
+                        <img src={agileImg} alt="Agile" className='skillsImg'/>
+                        <img src={pairedImg} alt="Agile" className='skillsImg'/>
                       </div>
                     </div>
                   </div>
@@ -304,9 +320,9 @@ function App() {
             <section id='projects' ref={projectsRef}>
               <h2 className='sectionHeader'>Projects</h2>
               <div className="customRule secondaryColour" />
-              <Project project={projects[0]}/>
-              <Project project={projects[1]}/>
-              <Project project={projects[2]}/>
+              <Project project={projects[0]} image={plottwistImg}/>
+              <Project project={projects[1]} image ={ncNewsBackImg}/>
+              <Project project={projects[2]} image={ncNewsFrontImg}/>
             </section>
           </div>
           <footer>
