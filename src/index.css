@@ -278,7 +278,7 @@ header {
   width: 75%;
   max-width: 95%;
   position: relative;
-  display: inline-flex;
+  display: flex;
 }
 
 .headerContent {
@@ -286,7 +286,8 @@ header {
 }
 
 header h1 {
-  white-space: nowrap;
+  /* white-space: nowrap; */
+  text-wrap: nowrap;
   font-family: 'Oswald', sans-serif;
   font-size: 60px;
   width: 100%;
@@ -834,7 +835,8 @@ footer p {
   }
   header h1 {
     margin-top: 20px;
-    white-space: wrap;
+    /* white-space: wrap; */
+    text-wrap: wrap;
   }
   header {
     display: flex;
