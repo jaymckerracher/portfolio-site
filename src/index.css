@@ -31,30 +31,12 @@ body {
   top: 0;
   left: 0;
   overflow: hidden;
-  background-image: url('src/assets/jason-ortego-TznjqhCHR9g-unsplash.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: blur(4px) saturate(80%);
-  transform: scale(1.1);
-  z-index: 1;
-} */
-
-.backgroundImgContainer {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  overflow: hidden;
   background-image: url('./assets/mike-hindle-pYn_gdRqtiA-unsplash.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  /* transform: scale(1.05); */
   z-index: 1;
-  /* filter: blur(2px); */
-}
+} */
 
 @property --secondaryColour1 {
   syntax: '<color>';
