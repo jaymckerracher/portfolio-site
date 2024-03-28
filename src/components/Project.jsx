@@ -5,17 +5,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink, faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-function Project ({project}) {
+function Project ({project, image}) {
+    const {title, imgAlt, imgId, desc} = project;
     const [fadeStyle, setFadeStyle] = useState('projectFade');
     const [projectStyling, setProjectStyling] = useState('projectMain projectMainLimit');
-    const {title, imgSrc, imgAlt, imgId, desc} = project;
 
     return (
         <div className="project">
             <h3>{title}</h3>
             <div className={projectStyling}>
                 <div className="projectImgContainer">
-                    <img src={imgSrc} alt={imgAlt} id={imgId}/>
+                    <img src={image} alt={imgAlt} id={imgId}/>
                 </div>
                 {desc.map(paragraph => {
                     return <p>{paragraph}</p>
