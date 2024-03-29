@@ -9,6 +9,7 @@
 html {
   overscroll-behavior: none;
   background-color: #191919;
+  height: 100%;
 }
 
 body {
@@ -858,6 +859,9 @@ footer p {
 }
 
 @media (max-width: 1000px) {
+  html {
+    height: -webkit-fill-available;
+  }
   .navContainer {
     background-color: white;
     display: none;
@@ -887,7 +891,7 @@ footer p {
   }
   .container {
     padding: 0;
-    height: 100vh;
+    /* height: 100vh; */
   }
   header {
     margin-top: 50px;
