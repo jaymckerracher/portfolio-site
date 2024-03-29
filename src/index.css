@@ -855,6 +855,7 @@ footer p {
 @media (max-width: 1000px) {
   #root {
     height: -webkit-fill-available;
+    width: -webkit-fill-available;
   }
   .navContainer {
     background-color: white;
