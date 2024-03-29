@@ -7,7 +7,8 @@
 }
 
 html {
-  overscroll-behavior: none;
+  /* overscroll-behavior: none; */
+  height: 100%;
 }
 
 body {
@@ -16,7 +17,7 @@ body {
 }
 
 #root {
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   /* background-color: #0a0a0a; */
   background: linear-gradient(to bottom, var(--secondaryColour1), var(--secondaryColour2));
