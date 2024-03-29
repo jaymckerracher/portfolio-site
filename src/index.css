@@ -7,8 +7,8 @@
 }
 
 html {
-  /* overscroll-behavior: none; */
-  height: 100%;
+  overscroll-behavior: auto;
+  /* height: 100%; */
 }
 
 body {
@@ -74,6 +74,7 @@ body {
   background-color: #191919;
   box-shadow: rgb(0, 0, 0) 0px 0px 30px;
   z-index: 2;
+  border: solid red 1px;
 }
 
 .navContainer {
@@ -865,6 +866,7 @@ footer p {
   main {
     min-width: 100%;
     padding: 0;
+    border: solid white 1px;
   }
   .nav2Border {
     width: 80%;
