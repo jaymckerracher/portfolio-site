@@ -860,15 +860,19 @@ footer p {
 @media (max-width: 1000px) {
   html {
     height: 90%;
+    overflow: scroll;
   }
   .navContainer {
     background-color: white;
     display: none;
   }
   main {
-    min-width: 100%;
+    width: 90%;
     padding: 0;
     border: solid white 1px;
+  }
+  .container {
+    height: 90%;
   }
   .nav2Border {
     width: 80%;
