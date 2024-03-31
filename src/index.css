@@ -853,10 +853,6 @@ footer p {
 }
 
 @media (max-width: 1000px) {
-  #root {
-    height: -webkit-fill-available;
-    width: -webkit-fill-available;
-  }
   .navContainer {
     background-color: white;
     display: none;
@@ -906,6 +902,10 @@ footer p {
 }
 
 @media (max-width: 800px) {
+  #root {
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+  }
   .aboutContainer p {
     width: 90%;
   }
