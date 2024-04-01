@@ -173,7 +173,7 @@ function App() {
               <div className="nav2Icons">
                 <a href="https://www.linkedin.com/in/jay-mckerracher-8a086a2a6/" target='_blank'><FontAwesomeIcon icon={faLinkedin} className='nav2Icon' /></a>
                 <a href="https://github.com/jaymckerracher" target='_blank'><FontAwesomeIcon icon={faGithub} className='nav2Icon'/></a>
-                <FontAwesomeIcon icon={faEnvelope} className='nav2Icon' onClick={handleButtonClick}/>
+                <FontAwesomeIcon icon={faEnvelope} className='nav2Icon nav2Mail' onClick={handleButtonClick}/>
               </div>
             </nav>
           </div>
@@ -191,7 +191,7 @@ function App() {
                 <div className="nav3Icons">
                   <a href="https://www.linkedin.com/in/jay-mckerracher-8a086a2a6/" target='_blank'><FontAwesomeIcon icon={faLinkedin} className='nav3Icon' /></a>
                   <a href="https://github.com/jaymckerracher" target='_blank'><FontAwesomeIcon icon={faGithub} className='nav3Icon'/></a>
-                  <FontAwesomeIcon icon={faEnvelope} className='nav3Icon' onClick={handleButtonClick}/>
+                  <FontAwesomeIcon icon={faEnvelope} className='nav3Icon nav2Mail' onClick={handleButtonClick}/>
                 </div>
               </nav>
             </div>

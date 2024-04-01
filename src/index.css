@@ -404,6 +404,10 @@ header img {
   color: white;
 }
 
+.nav2Mail {
+  cursor: copy;
+}
+
 .mainContent {
   width: 75%;
   display: flex;
@@ -701,6 +705,7 @@ footer p {
 
 .nav3StripIcon {
   font-size: 40px;
+  cursor: pointer;
 }
 
 .nav3Blur {
