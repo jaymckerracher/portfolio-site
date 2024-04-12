@@ -17,7 +17,7 @@ body {
 }
 
 #root {
-  height: 100vh;
+  max-height: 100vh;
   display: flex;
   background: linear-gradient(to bottom, var(--secondaryColour1), var(--secondaryColour2));
   justify-content: center;
@@ -935,9 +935,9 @@ footer p {
     height: -webkit-fill-available;
     width: -webkit-fill-available;
   } */
-  #root {
-    height: 100%;
-  }
+  /* #root {
+    max-height: ;
+  } */
   .aboutContainer p {
     width: 90%;
   }
