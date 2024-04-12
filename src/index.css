@@ -9,6 +9,7 @@ html {
   overscroll-behavior: none;
   background-color: #191919;
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 body {
@@ -17,7 +18,7 @@ body {
 }
 
 #root {
-  max-height: 100vh;
+  height: 100vh;
   display: flex;
   background: linear-gradient(to bottom, var(--secondaryColour1), var(--secondaryColour2));
   justify-content: center;
@@ -935,9 +936,9 @@ footer p {
     height: -webkit-fill-available;
     width: -webkit-fill-available;
   } */
-  /* #root {
-    max-height: ;
-  } */
+  #root {
+    height: auto;
+  }
   .aboutContainer p {
     width: 90%;
   }
