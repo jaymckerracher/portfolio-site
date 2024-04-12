@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope, faCopy, faChevronDown, faBars } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faCopy, faChevronUp, faBars } from '@fortawesome/free-solid-svg-icons'
 import { faLinkedin, faGithub, faJsSquare, faHtml5, faCss3Alt, faReact, faCloudflare } from '@fortawesome/free-brands-svg-icons';
 import { ToastContainer, toast, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -42,6 +42,7 @@ function App() {
   };
 
   function handleLinkClick (event) {
+    console.log('we are getting here...')
     if (event.target.classList.contains('nav3Clickable')) {
       if (nav3BlurStyle === 'nav3Blur nav3BlurHide') {
         setNav3BlurStyle('nav3Blur');
@@ -66,6 +67,8 @@ function App() {
   const [nav3BlurStyle, setNav3BlurStyle] = useState('nav3Blur nav3BlurHide');
   const [nav3BorderStyle, setNav3BorderStyle] = useState('nav3Border nav3BorderHide');
 
+  const nav3Ref = useRef(null);
+  const [backToTopStyle, setBackToTopStyle] = useState('backToTopButton backToTopButtonHide');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,6 +82,16 @@ function App() {
         setNav2BorderStyle('nav2Border');
         setNav2Style('nav2');
       }
+
+      // handle transparency of backToTopButton
+      const nav3Bottom = nav3Ref.current.getBoundingClientRect().bottom;
+      // console.log(nav3Bottom, '<<<<')
+      if (nav3Bottom < 0) {
+        setBackToTopStyle('backToTopButton')
+      } else {
+        setBackToTopStyle('backToTopButton backToTopButtonHide')
+      }
+      // nav3Bottom < 0 ? setBackToTopStyle('backToTopButton') : setBackToTopStyle('backToTopButton backToTopButtonHide')
 
       // handle about reaching top of screen
       const aboutTop = aboutRef.current.getBoundingClientRect().top;
@@ -113,7 +126,7 @@ function App() {
     
     document.getElementById('main').addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      document.getElementById('main').removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -177,8 +190,10 @@ function App() {
               </div>
             </nav>
           </div>
-          <div className="nav3Strip" onClick={handleLinkClick}>
-            <FontAwesomeIcon icon={faBars} className='nav3StripIcon nav3Clickable'/>
+          <div className="nav3Strip nav3Clickable" onClick={handleLinkClick} ref={nav3Ref}>
+            <div className="nav3StripIconContainer nav3Clickable">
+              <FontAwesomeIcon icon={faBars} className='nav3StripIcon'/>
+            </div>
           </div>
           <div className={`${nav3BlurStyle} nav3Clickable`} onClick={handleLinkClick}>
             <div className={`${nav3BorderStyle} secondaryColour`}>
@@ -332,6 +347,11 @@ function App() {
               Background photo by <a href="https://unsplash.com/@mikehindle?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" className='projectURL'>Mike Hindle</a> on <a href="https://unsplash.com/photos/grayscale-photo-of-a-bridge-pYn_gdRqtiA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" className='projectURL'>Unsplash</a>"
             </p>
           </footer>
+          <div className="backToTopContainer">
+            <button className={backToTopStyle} onClick={() => document.getElementById('main').scrollTo(0, 0)}>
+              <FontAwesomeIcon icon={faChevronUp} className='backToTopArrow secondaryColour'/>
+            </button>
+          </div>
         </main>
       </div>
       <ToastContainer />
