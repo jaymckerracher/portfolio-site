@@ -935,6 +935,9 @@ footer p {
     height: -webkit-fill-available;
     width: -webkit-fill-available;
   } */
+  #root {
+    height: 100%;
+  }
   .aboutContainer p {
     width: 90%;
   }
