@@ -932,15 +932,13 @@ footer p {
 
 @media (max-width: 800px) {
   html {
-    display: fixed;
-    height: 100vh;
+    height: 100%;
+    border: solid red 1px;
   }
   body {
-    display: fixed;
-    height: 100vh;
+    height: 100%;
   }
   #root {
-    display: fixed;
     height: 100%;
   }
   .aboutContainer p {
