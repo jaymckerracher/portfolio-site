@@ -6,13 +6,13 @@
 }
 
 html {
-  overscroll-behavior: none;
+  /* overscroll-behavior: none; */
   background-color: #191919;
   scroll-behavior: smooth;
 }
 
 body {
-  overscroll-behavior: none;
+  /* overscroll-behavior: none; */
   color: white;
 }
 
@@ -882,6 +882,15 @@ footer p {
 }
 
 @media (max-width: 1000px) {
+  html {
+    height: 100%;
+  }
+  body {
+    height: 100%;
+  }
+  #root {
+    height: 100%;
+  }
   .navContainer {
     background-color: white;
     display: none;
@@ -931,15 +940,6 @@ footer p {
 }
 
 @media (max-width: 800px) {
-  html {
-    height: 100%;
-  }
-  body {
-    height: 100%;
-  }
-  #root {
-    height: 100%;
-  }
   .aboutContainer p {
     width: 90%;
   }
