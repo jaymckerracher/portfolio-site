@@ -935,9 +935,6 @@ footer p {
     display: fixed;
     height: 100%;
   }
-  #root {
-    height: 100%;
-  }
   .aboutContainer p {
     width: 90%;
   }
