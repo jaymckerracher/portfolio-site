@@ -9,7 +9,6 @@ html {
   overscroll-behavior: none;
   background-color: #191919;
   scroll-behavior: smooth;
-  height: 100%;
 }
 
 body {
@@ -932,12 +931,12 @@ footer p {
 }
 
 @media (max-width: 800px) {
-  /* #root {
-    height: -webkit-fill-available;
-    width: -webkit-fill-available;
-  } */
+  html {
+    display: fixed;
+    height: 100%;
+  }
   #root {
-    height: auto;
+    height: 100%;
   }
   .aboutContainer p {
     width: 90%;
