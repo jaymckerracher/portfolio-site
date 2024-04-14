@@ -18,7 +18,7 @@ function Project ({project, image}) {
                     <img src={image} alt={imgAlt} id={imgId}/>
                 </div>
                 {desc.map(paragraph => {
-                    return <p>{paragraph}</p>
+                    return <p key={desc.indexOf(paragraph)}>{paragraph}</p>
                 })}
                 {/* <p>To see more of the technologies used, along with the rest of the code, check out the GitHub repo <a href={githubLink}target="_blank" className="projectURL">here</a>.</p> */}
                 {project.githubLink ? <div className="projectLink">
