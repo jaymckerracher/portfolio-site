@@ -20,6 +20,8 @@ import plottwistImg from "./assets/plottwist.png";
 import ncNewsBackImg from "./assets/nc-news-back.png";
 import ncNewsFrontImg from "./assets/nc-news-front.png";
 
+import * as THREE from 'three';
+
 function App() {
   const handleButtonClick = async () => {
     try {
@@ -70,7 +72,69 @@ function App() {
   const nav3Ref = useRef(null);
   const [backToTopStyle, setBackToTopStyle] = useState('backToTopButton backToTopButtonHide');
 
+  const canvasRef = useRef();
+
   useEffect(() => {
+    // configuring three.js scene
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color("rgb(16, 16, 16)");
+    const camera = new THREE.PerspectiveCamera(20, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 10;
+    
+    const colours = ['105, 166, 209', '148, 233, 255', '201, 235, 239', '255, 212, 177', '252, 173, 176']
+    const cubes = [];
+    const endPosition = new THREE.Vector3(window.innerWidth * 1.25, 0, 0);
+    endPosition.unproject(camera);
+
+    function createRandomCube () {
+      // creating the cube
+      const cubeSize = Math.random() + 0.5;
+      // const cubeSize = 1;
+      const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
+      const cubeColour = colours[Math.floor(Math.random() * colours.length)]
+      const material = new THREE.MeshBasicMaterial({ color: `rgb(${cubeColour})` });
+      const cube = new THREE.Mesh(geometry, material);
+
+      // defining the starting position
+      const randZ = Math.floor(Math.random() * -5);
+      // const randZ = 0
+      const distanceToBack = 10 - randZ + cubeSize/2;
+      const verticalFOV = camera.fov * (Math.PI / 180);
+      const visibleHeight = 2 * Math.tan( verticalFOV / 2 ) * distanceToBack;
+      const visibleWidth = visibleHeight * camera.aspect;
+      const randY = Math.random() * ((visibleHeight / 2) - (visibleHeight / -2) + 1) + (visibleHeight / -2);
+
+      cube.position.set(camera.position.x-(visibleWidth+cubeSize)/2, randY, randZ);
+      cubes.push(cube);
+      scene.add(cube);
+      // setInterval(() => {
+      //   createRandomCube()
+      // }, 10000)
+    }
+    
+    const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+    createRandomCube();
+    
+    const animate = () => {
+      requestAnimationFrame(animate);
+      renderer.render(scene, camera);
+
+      cubes.forEach(cube => {
+        const speed = 0.01 / cube.scale.x;
+        cube.rotation.x += speed;
+        cube.rotation.y += speed;
+        cube.position.x += speed;
+        // if (cube.position.x > endPosition.x) {
+        //   scene.remove(cube);
+        //   cubes.splice(cubes.indexOf(cube), 1);
+        // }
+      })
+    };
+    animate();
+
     const handleScroll = () => {
       // handle nav2 reaching top of screen
       const nav2Top = nav2Ref.current.getBoundingClientRect().top;
@@ -85,13 +149,7 @@ function App() {
 
       // handle transparency of backToTopButton
       const nav3Bottom = nav3Ref.current.getBoundingClientRect().bottom;
-      // console.log(nav3Bottom, '<<<<')
-      if (nav3Bottom < 0) {
-        setBackToTopStyle('backToTopButton')
-      } else {
-        setBackToTopStyle('backToTopButton backToTopButtonHide')
-      }
-      // nav3Bottom < 0 ? setBackToTopStyle('backToTopButton') : setBackToTopStyle('backToTopButton backToTopButtonHide')
+      nav3Bottom < 0 ? setBackToTopStyle('backToTopButton') : setBackToTopStyle('backToTopButton backToTopButtonHide')
 
       // handle about reaching top of screen
       const aboutTop = aboutRef.current.getBoundingClientRect().top;
@@ -132,7 +190,7 @@ function App() {
 
   return (
     <>
-      <div className="backgroundImgContainer" />
+      <canvas ref={canvasRef} className='backgroundCanvas'/>
       <div className="container">
         <div className="navContainer">
           <nav className='upperNav secondaryColour'>
