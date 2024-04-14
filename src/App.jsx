@@ -83,13 +83,11 @@ function App() {
     
     const colours = ['105, 166, 209', '148, 233, 255', '201, 235, 239', '255, 212, 177', '252, 173, 176']
     const cubes = [];
-    const endPosition = new THREE.Vector3(window.innerWidth * 1.25, 0, 0);
-    endPosition.unproject(camera);
+    let cubeID = 0;
 
     function createRandomCube () {
       // creating the cube
       const cubeSize = Math.random() + 0.5;
-      // const cubeSize = 1;
       const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
       const cubeColour = colours[Math.floor(Math.random() * colours.length)]
       const material = new THREE.MeshBasicMaterial({ color: `rgb(${cubeColour})` });
@@ -97,19 +95,26 @@ function App() {
 
       // defining the starting position
       const randZ = Math.floor(Math.random() * -5);
-      // const randZ = 0
       const distanceToBack = 10 - randZ + cubeSize/2;
       const verticalFOV = camera.fov * (Math.PI / 180);
       const visibleHeight = 2 * Math.tan( verticalFOV / 2 ) * distanceToBack;
       const visibleWidth = visibleHeight * camera.aspect;
       const randY = Math.random() * ((visibleHeight / 2) - (visibleHeight / -2) + 1) + (visibleHeight / -2);
-
       cube.position.set(camera.position.x-(visibleWidth+cubeSize)/2, randY, randZ);
-      cubes.push(cube);
+
+      cubes.push({
+        cube: cube,
+        speed: Math.random() * 0.01 + 0.005,
+        visibleWidth: visibleWidth,
+        cubeSize: cubeSize,
+        uniqueID: cubeID
+      });
+
+      cubeID ++;
+
       scene.add(cube);
-      // setInterval(() => {
-      //   createRandomCube()
-      // }, 10000)
+
+      setTimeout(createRandomCube, 3000);
     }
     
     const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
@@ -122,15 +127,29 @@ function App() {
       requestAnimationFrame(animate);
       renderer.render(scene, camera);
 
-      cubes.forEach(cube => {
-        const speed = 0.01 / cube.scale.x;
-        cube.rotation.x += speed;
-        cube.rotation.y += speed;
-        cube.position.x += speed;
-        // if (cube.position.x > endPosition.x) {
-        //   scene.remove(cube);
-        //   cubes.splice(cubes.indexOf(cube), 1);
-        // }
+      const expiredCubes = [];
+
+      cubes.forEach(cubeObj => {
+        cubeObj.cube.position.x += cubeObj.speed;
+        cubeObj.cube.rotation.x += cubeObj.speed;
+        cubeObj.cube.rotation.y += cubeObj.speed;
+
+        // removing the expired cube from the scene
+        if (cubeObj.cube.position.x > (cubeObj.visibleWidth / 2) + (cubeObj.cubeSize / 2)) {
+          scene.remove(cubeObj.cube)
+          expiredCubes.push(cubeObj);
+        };
+
+        // removing the expired cube from the cubes array
+        if (expiredCubes.length) {
+          expiredCubes.forEach(expiredCube => {
+            for (let i=0; i<cubes.length; i++) {
+              if (expiredCube.uniqueID === cubes[i].uniqueID) {
+                cubes.splice(i, 1);
+              }
+            }
+          })
+        }
       })
     };
     animate();
