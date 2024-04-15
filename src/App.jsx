@@ -85,34 +85,44 @@ function App() {
     camera.position.z = 10;
     
     const colours = ['105, 166, 209', '148, 233, 255', '201, 235, 239', '255, 212, 177', '252, 173, 176'];
-    const potentialZCoordinates = [0, -20, -40]
-    const sizeRanges = [[0.5, 0.75], [3, 4], [7.5, 10]];
+    const potentialZCoordinates = [0, -20];
+    const sizeRanges = [[0.3, 0.6], [3, 5]];
+    const speeds = [0.01, -0.01];
+    const yLimits = [0.9, 0.7];
     const cubes = [];
     let cubeID = 0;
 
-    function createRandomCube () {
+    function createRandomCube (cubeType) {
+      const maxSize = sizeRanges[cubeType][1];
+      const minSize = sizeRanges[cubeType][0];
+      const zCoor = potentialZCoordinates[cubeType];
+      const speed = speeds[cubeType];
+      const yLimit = yLimit[cubeType];
+
       // creating the cube
-      // const cubeSize = sizes[Math.floor(Math.random() * 2)];
-      const cubeSize = 7.5;
+      const cubeSize = Math.random() * (maxSize - minSize) + minSize;
       const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
       const cubeColour = colours[Math.floor(Math.random() * colours.length)];
       const material = new THREE.MeshBasicMaterial({ color: `rgb(${cubeColour})` });
       const cube = new THREE.Mesh(geometry, material);
 
       // defining the starting position
-      const randZ = potentialZCoordinates[Math.floor(Math.random() * 2)];
-      const distanceToBack = 10 - randZ + cubeSize/2;
+      const distanceToBack = 10 - zCoor + cubeSize/2;
       const verticalFOV = camera.fov * (Math.PI / 180);
       const visibleHeight = 2 * Math.tan( verticalFOV / 2 ) * distanceToBack;
       const visibleWidth = visibleHeight * camera.aspect;
-      const randY = Math.random() * visibleHeight - visibleHeight / 2;
-      cube.position.set(camera.position.x-(visibleWidth+cubeSize)/2, randY, -40);
+      const randY = Math.random() * (visibleHeight * yLimit) - visibleHeight * (yLimit * 2);
+      cubeType === 0 ?
+        cube.position.set(camera.position.x - (visibleWidth + cubeSize) / 2, randY, zCoor)
+      :
+        cube.position.set(camera.position.x + (visibleWidth + cubeSize) / 2, randY, zCoor);
 
       cubes.push({
         cube: cube,
         visibleWidth: visibleWidth,
         cubeSize: cubeSize,
-        uniqueID: cubeID
+        uniqueID: cubeID,
+        speed: speed
       });
 
       cubeID ++;
@@ -126,8 +136,13 @@ function App() {
     // const depthRenderTarget = new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight);
     // const depthMaterial = new THREE.MeshDepthMaterial();
 
-    // setInterval(createRandomCube, 4000);
-    createRandomCube();
+    createRandomCube(1);
+    setInterval(() => {
+      createRandomCube(0)
+    }, 5000);
+    setInterval(() => {
+      createRandomCube(1)
+    }, 30000);
     
     const animate = () => {
       requestAnimationFrame(animate);
@@ -136,9 +151,10 @@ function App() {
       const expiredCubes = [];
 
       cubes.forEach(cubeObj => {
-        cubeObj.cube.position.x += 0.01;
-        cubeObj.cube.rotation.x += 0.0075;
-        cubeObj.cube.rotation.y += 0.0075;
+        // animating the cube
+        cubeObj.cube.position.x += cubeObj.speed;
+        cubeObj.cube.rotation.x += cubeObj.speed;
+        cubeObj.cube.rotation.y += cubeObj.speed;
 
         // removing the expired cube from the scene
         if (cubeObj.cube.position.x > (cubeObj.visibleWidth / 2) + (cubeObj.cubeSize)) {
