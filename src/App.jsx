@@ -87,8 +87,8 @@ function App() {
     const colours = ['105, 166, 209', '148, 233, 255', '201, 235, 239', '255, 212, 177', '252, 173, 176'];
     const potentialZCoordinates = [0, -20];
     const sizeRanges = [[0.3, 0.6], [3, 5]];
-    const speeds = [0.01, -0.01];
-    const yLimits = [0.9, 0.7];
+    const speeds = [0.01, -0.015];
+    const yLimits = [0.6, 0.8];
     const cubes = [];
     let cubeID = 0;
 
@@ -97,7 +97,7 @@ function App() {
       const minSize = sizeRanges[cubeType][0];
       const zCoor = potentialZCoordinates[cubeType];
       const speed = speeds[cubeType];
-      const yLimit = yLimit[cubeType];
+      const yLimit = yLimits[cubeType];
 
       // creating the cube
       const cubeSize = Math.random() * (maxSize - minSize) + minSize;
@@ -111,7 +111,7 @@ function App() {
       const verticalFOV = camera.fov * (Math.PI / 180);
       const visibleHeight = 2 * Math.tan( verticalFOV / 2 ) * distanceToBack;
       const visibleWidth = visibleHeight * camera.aspect;
-      const randY = Math.random() * (visibleHeight * yLimit) - visibleHeight * (yLimit * 2);
+      const randY = Math.random() * (visibleHeight * yLimit) - visibleHeight * (yLimit / 2);
       cubeType === 0 ?
         cube.position.set(camera.position.x - (visibleWidth + cubeSize) / 2, randY, zCoor)
       :
@@ -136,13 +136,15 @@ function App() {
     // const depthRenderTarget = new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight);
     // const depthMaterial = new THREE.MeshDepthMaterial();
 
-    createRandomCube(1);
-    setInterval(() => {
-      createRandomCube(0)
-    }, 5000);
-    setInterval(() => {
-      createRandomCube(1)
-    }, 30000);
+    function cubeLoop (cubeType, range, min) {
+      createRandomCube(cubeType);
+      setTimeout(() => {
+        cubeLoop(cubeType, range, min)
+      }, Math.floor(Math.random() * range + min));
+    }
+
+    cubeLoop(0, 2000, 4000);
+    cubeLoop(1, 3000, 16500);
     
     const animate = () => {
       requestAnimationFrame(animate);
@@ -153,8 +155,8 @@ function App() {
       cubes.forEach(cubeObj => {
         // animating the cube
         cubeObj.cube.position.x += cubeObj.speed;
-        cubeObj.cube.rotation.x += cubeObj.speed;
-        cubeObj.cube.rotation.y += cubeObj.speed;
+        cubeObj.cube.rotation.x += 0.01;
+        cubeObj.cube.rotation.y += 0.01;
 
         // removing the expired cube from the scene
         if (cubeObj.cube.position.x > (cubeObj.visibleWidth / 2) + (cubeObj.cubeSize)) {
