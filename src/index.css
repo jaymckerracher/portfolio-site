@@ -60,9 +60,9 @@ body {
   justify-content: space-between;
   align-items: center;
   /* background-color: #191919; */
-  background-color: rgba(25, 25, 25, 0.95);
+  background-color: rgba(25, 25, 25, 0.4);
   box-shadow: rgb(0, 0, 0) 0px 0px 30px;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(2px);
   z-index: 2;
 }
 
