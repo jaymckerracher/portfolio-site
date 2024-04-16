@@ -7,7 +7,6 @@
 
 html {
   /* overscroll-behavior: none; */
-  background-color: #191919;
   scroll-behavior: smooth;
 }
 
@@ -19,9 +18,14 @@ body {
 #root {
   height: 100vh;
   display: flex;
-  background: linear-gradient(to bottom, var(--secondaryColour1), var(--secondaryColour2));
+  /* background: linear-gradient(to bottom, var(--secondaryColour1), var(--secondaryColour2)); */
   justify-content: center;
-  transition: --secondaryColour1 500ms, --secondaryColour2 500ms;
+  /* transition: --secondaryColour1 500ms, --secondaryColour2 500ms; */
+  background-color: #101010;
+}
+
+.backgroundCanvas {
+  position: fixed;
 }
 
 @property --secondaryColour1 {
@@ -55,8 +59,10 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #191919;
+  /* background-color: #191919; */
+  background-color: rgba(25, 25, 25, 0.4);
   box-shadow: rgb(0, 0, 0) 0px 0px 30px;
+  backdrop-filter: blur(2px);
   z-index: 2;
 }
 
@@ -809,6 +815,7 @@ footer p {
 
 .backToTopButtonHide {
   opacity: 0;
+  pointer-events: none;
 }
 
 .backToTopArrow {
@@ -818,8 +825,8 @@ footer p {
 
 @media (min-width: 1261px) {
   .container {
-    width: 80%;
-    padding: 0 7.5%;
+    width: 75%;
+    padding: 0 5%;
     min-width: 1260px;
   }
 }

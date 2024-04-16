@@ -19,6 +19,13 @@ import pairedImg from "./assets/paired.png";
 import plottwistImg from "./assets/plottwist.png";
 import ncNewsBackImg from "./assets/nc-news-back.png";
 import ncNewsFrontImg from "./assets/nc-news-front.png";
+import whiteCircleImg from "./assets/circle-64.png";
+
+import * as THREE from 'three';
+// import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+// import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+// import { BloomPass } from 'three/addons/postprocessing/BloomPass.js';
+// import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 
 function App() {
   const handleButtonClick = async () => {
@@ -42,7 +49,6 @@ function App() {
   };
 
   function handleLinkClick (event) {
-    console.log('we are getting here...')
     if (event.target.classList.contains('nav3Clickable')) {
       if (nav3BlurStyle === 'nav3Blur nav3BlurHide') {
         setNav3BlurStyle('nav3Blur');
@@ -70,7 +76,153 @@ function App() {
   const nav3Ref = useRef(null);
   const [backToTopStyle, setBackToTopStyle] = useState('backToTopButton backToTopButtonHide');
 
+  const canvasRef = useRef();
+
   useEffect(() => {
+    // configuring three.js scene
+    const scene = new THREE.Scene();
+    // scene.background = new THREE.Color("rgb(16, 16, 16)");
+    // const camera = new THREE.PerspectiveCamera(20, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+    // camera.position.z = 10;
+    camera.position.z = 1;
+    camera.position.x = Math.PI / 2;
+    
+    // const colours = ['105, 166, 209', '148, 233, 255', '201, 235, 239', '255, 212, 177', '252, 173, 176'];
+    // const potentialZCoordinates = [0, -20];
+    // const sizeRanges = [[0.3, 0.6], [3, 5]];
+    // const speeds = [0.01, -0.015];
+    // const yLimits = [0.6, 0.8];
+    // const cubes = [];
+    // let cubeID = 0;
+
+    // function createRandomCube (cubeType) {
+    //   const maxSize = sizeRanges[cubeType][1];
+    //   const minSize = sizeRanges[cubeType][0];
+    //   const zCoor = potentialZCoordinates[cubeType];
+    //   const speed = speeds[cubeType];
+    //   const yLimit = yLimits[cubeType];
+
+    //   // creating the cube
+    //   const cubeSize = Math.random() * (maxSize - minSize) + minSize;
+    //   const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
+    //   // const geometry = new THREE.BoxGeometry(1, 1, 1);
+    //   const cubeColour = colours[Math.floor(Math.random() * colours.length)];
+    //   const material = new THREE.MeshBasicMaterial({ color: `rgb(${cubeColour})` });
+    //   const cube = new THREE.Mesh(geometry, material);
+
+    //   // defining the starting position
+    //   const distanceToBack = 10 - zCoor + cubeSize/2;
+    //   const verticalFOV = camera.fov * (Math.PI / 180);
+    //   const visibleHeight = 2 * Math.tan( verticalFOV / 2 ) * distanceToBack;
+    //   const visibleWidth = visibleHeight * camera.aspect;
+    //   const randY = Math.random() * (visibleHeight * yLimit) - visibleHeight * (yLimit / 2);
+    //   cubeType === 0 ?
+    //     cube.position.set(camera.position.x - (visibleWidth + cubeSize) / 2, randY, zCoor)
+    //   :
+    //     cube.position.set(camera.position.x + (visibleWidth + cubeSize) / 2, randY, zCoor);
+
+    //   cubes.push({
+    //     cube: cube,
+    //     visibleWidth: visibleWidth,
+    //     cubeSize: cubeSize,
+    //     uniqueID: cubeID,
+    //     speed: speed
+    //   });
+
+    //   cubeID ++;
+
+    //   scene.add(cube);
+    // }
+    
+    const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    // const composer = new EffectComposer( renderer );
+
+    // const renderPass = new RenderPass( scene, camera );
+    // composer.addPass( renderPass );
+
+    // const bloomPass = new BloomPass(1.6, 0.1, 0.1);
+    // composer.addPass( bloomPass )
+
+    // const outputPass = new OutputPass();
+    // composer.addPass( outputPass );
+
+    // function cubeLoop (cubeType, range, min) {
+    //   createRandomCube(cubeType);
+    //   setTimeout(() => {
+    //     cubeLoop(cubeType, range, min)
+    //   }, Math.floor(Math.random() * range + min));
+    // }
+
+    // cubeLoop(0, 2000, 5000);
+    // cubeLoop(1, 3000, 18000);
+    
+    const starGeo = new THREE.BufferGeometry();
+    const vertices = [];
+    for (let i=0; i<6000; i++) {
+      const x = Math.random() * 600 - 300;
+      const y = Math.random() * 600 - 300;
+      const z = Math.random() * 600 - 300;
+      vertices.push(x, y, z);
+    };
+    starGeo.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+
+    let sprite = new THREE.TextureLoader().load(whiteCircleImg);
+    let starMaterial = new THREE.PointsMaterial({
+      color: 0xaaaaaa,
+      size: 0.7,
+      map: sprite
+    })
+
+    let stars = new THREE.Points(starGeo, starMaterial);
+    scene.add(stars);
+
+    const animate = () => {
+      requestAnimationFrame(animate);
+      renderer.render(scene, camera);
+
+      const positionAttribute = starGeo.getAttribute('position');
+      const positions = positionAttribute.array;
+      for (let i = 0; i < positions.length; i += 3) {
+          positions[i + 2] += 0.4;
+          if (positions[i + 2] > 300) {
+            positions[i+2] = -300
+          }
+      }
+      positionAttribute.needsUpdate = true;
+
+      stars.rotation.z += 0.002;
+
+      // const expiredCubes = [];
+
+      // cubes.forEach(cubeObj => {
+      //   // animating the cube
+      //   cubeObj.cube.position.x += cubeObj.speed;
+      //   cubeObj.cube.rotation.x += 0.01;
+      //   cubeObj.cube.rotation.y += 0.01;
+
+      //   // removing the expired cube from the scene
+      //   if (cubeObj.cube.position.x > (cubeObj.visibleWidth / 2) + (cubeObj.cubeSize)) {
+      //     scene.remove(cubeObj.cube)
+      //     expiredCubes.push(cubeObj);
+      //   };
+
+      //   // removing the expired cube from the cubes array
+      //   if (expiredCubes.length) {
+      //     expiredCubes.forEach(expiredCube => {
+      //       for (let i=0; i<cubes.length; i++) {
+      //         if (expiredCube.uniqueID === cubes[i].uniqueID) {
+      //           cubes.splice(i, 1);
+      //         }
+      //       }
+      //     })
+      //   }
+      // })
+    };
+    animate();
+
     const handleScroll = () => {
       // handle nav2 reaching top of screen
       const nav2Top = nav2Ref.current.getBoundingClientRect().top;
@@ -85,13 +237,7 @@ function App() {
 
       // handle transparency of backToTopButton
       const nav3Bottom = nav3Ref.current.getBoundingClientRect().bottom;
-      // console.log(nav3Bottom, '<<<<')
-      if (nav3Bottom < 0) {
-        setBackToTopStyle('backToTopButton')
-      } else {
-        setBackToTopStyle('backToTopButton backToTopButtonHide')
-      }
-      // nav3Bottom < 0 ? setBackToTopStyle('backToTopButton') : setBackToTopStyle('backToTopButton backToTopButtonHide')
+      nav3Bottom < 0 ? setBackToTopStyle('backToTopButton') : setBackToTopStyle('backToTopButton backToTopButtonHide')
 
       // handle about reaching top of screen
       const aboutTop = aboutRef.current.getBoundingClientRect().top;
@@ -132,7 +278,7 @@ function App() {
 
   return (
     <>
-      <div className="backgroundImgContainer" />
+      <canvas ref={canvasRef} className='backgroundCanvas'/>
       <div className="container">
         <div className="navContainer">
           <nav className='upperNav secondaryColour'>
