@@ -23,10 +23,6 @@ import ncNewsFrontImg from "./assets/nc-news-front.png";
 import whiteCircleImg from "./assets/circle-64.png";
 
 import * as THREE from 'three';
-// import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-// import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-// import { BloomPass } from 'three/addons/postprocessing/BloomPass.js';
-// import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 
 function App() {
   const handleButtonClick = async () => {
@@ -157,9 +153,9 @@ function App() {
       else if (aboutTop <= 0) setSecondaryColour('secondaryColourB');
     }, 200);
     
-    document.getElementById('main').addEventListener('wheel', handleScroll);
+    document.getElementById('main').addEventListener('scroll', handleScroll);
     return () => {
-      document.getElementById('main').removeEventListener('wheel', handleScroll);
+      document.getElementById('main').removeEventListener('scroll', handleScroll);
     };
   }, []);
 
