@@ -22,12 +22,10 @@ function ReadMoreButton ({setFadeStyle, setProjectStyling}) {
         <button className={`${readMoreButton} readMoreButton`} onClick={() => {
             if (readMoreButton === 'readMoreButtonUp') {
                 readMoreFunc('Down', 'Less');
-                setFadeStyle('projectFade fadeDisappear');
                 setProjectStyling('projectMain');
             }
             else {
                 readMoreFunc('Up', 'More');
-                setFadeStyle('projectFade');
                 setProjectStyling('projectMain projectMainLimit');
             }
         }}>

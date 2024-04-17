@@ -4,6 +4,7 @@ import { faLinkedin, faGithub, faJsSquare, faHtml5, faCss3Alt, faReact, faCloudf
 import { ToastContainer, toast, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRef, useEffect, useState } from 'react';
+import { throttle } from 'lodash';
 
 import Project from './components/Project';
 import projects from './projects';
@@ -78,93 +79,25 @@ function App() {
 
   const canvasRef = useRef();
 
+  const [secondaryColour, setSecondaryColour] = useState('');
+
   useEffect(() => {
-    // configuring three.js scene
+    // create three js scene
     const scene = new THREE.Scene();
-    // scene.background = new THREE.Color("rgb(16, 16, 16)");
-    // const camera = new THREE.PerspectiveCamera(20, window.innerWidth / window.innerHeight, 0.1, 1000);
     const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
-    // camera.position.z = 10;
     camera.position.z = 1;
     camera.position.x = Math.PI / 2;
-    
-    // const colours = ['105, 166, 209', '148, 233, 255', '201, 235, 239', '255, 212, 177', '252, 173, 176'];
-    // const potentialZCoordinates = [0, -20];
-    // const sizeRanges = [[0.3, 0.6], [3, 5]];
-    // const speeds = [0.01, -0.015];
-    // const yLimits = [0.6, 0.8];
-    // const cubes = [];
-    // let cubeID = 0;
-
-    // function createRandomCube (cubeType) {
-    //   const maxSize = sizeRanges[cubeType][1];
-    //   const minSize = sizeRanges[cubeType][0];
-    //   const zCoor = potentialZCoordinates[cubeType];
-    //   const speed = speeds[cubeType];
-    //   const yLimit = yLimits[cubeType];
-
-    //   // creating the cube
-    //   const cubeSize = Math.random() * (maxSize - minSize) + minSize;
-    //   const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
-    //   // const geometry = new THREE.BoxGeometry(1, 1, 1);
-    //   const cubeColour = colours[Math.floor(Math.random() * colours.length)];
-    //   const material = new THREE.MeshBasicMaterial({ color: `rgb(${cubeColour})` });
-    //   const cube = new THREE.Mesh(geometry, material);
-
-    //   // defining the starting position
-    //   const distanceToBack = 10 - zCoor + cubeSize/2;
-    //   const verticalFOV = camera.fov * (Math.PI / 180);
-    //   const visibleHeight = 2 * Math.tan( verticalFOV / 2 ) * distanceToBack;
-    //   const visibleWidth = visibleHeight * camera.aspect;
-    //   const randY = Math.random() * (visibleHeight * yLimit) - visibleHeight * (yLimit / 2);
-    //   cubeType === 0 ?
-    //     cube.position.set(camera.position.x - (visibleWidth + cubeSize) / 2, randY, zCoor)
-    //   :
-    //     cube.position.set(camera.position.x + (visibleWidth + cubeSize) / 2, randY, zCoor);
-
-    //   cubes.push({
-    //     cube: cube,
-    //     visibleWidth: visibleWidth,
-    //     cubeSize: cubeSize,
-    //     uniqueID: cubeID,
-    //     speed: speed
-    //   });
-
-    //   cubeID ++;
-
-    //   scene.add(cube);
-    // }
     
     const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
-    // const composer = new EffectComposer( renderer );
-
-    // const renderPass = new RenderPass( scene, camera );
-    // composer.addPass( renderPass );
-
-    // const bloomPass = new BloomPass(1.6, 0.1, 0.1);
-    // composer.addPass( bloomPass )
-
-    // const outputPass = new OutputPass();
-    // composer.addPass( outputPass );
-
-    // function cubeLoop (cubeType, range, min) {
-    //   createRandomCube(cubeType);
-    //   setTimeout(() => {
-    //     cubeLoop(cubeType, range, min)
-    //   }, Math.floor(Math.random() * range + min));
-    // }
-
-    // cubeLoop(0, 2000, 5000);
-    // cubeLoop(1, 3000, 18000);
     
     const starGeo = new THREE.BufferGeometry();
     const vertices = [];
-    for (let i=0; i<6000; i++) {
+    for (let i=0; i<2500; i++) {
       const x = Math.random() * 600 - 300;
       const y = Math.random() * 600 - 300;
-      const z = Math.random() * 600 - 300;
+      const z = Math.random() * 400 - 300;
       vertices.push(x, y, z);
     };
     starGeo.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
@@ -186,44 +119,19 @@ function App() {
       const positionAttribute = starGeo.getAttribute('position');
       const positions = positionAttribute.array;
       for (let i = 0; i < positions.length; i += 3) {
-          positions[i + 2] += 0.4;
-          if (positions[i + 2] > 300) {
+          positions[i + 2] += 0.1;
+          if (positions[i + 2] > 100) {
             positions[i+2] = -300
           }
       }
       positionAttribute.needsUpdate = true;
 
-      stars.rotation.z += 0.002;
-
-      // const expiredCubes = [];
-
-      // cubes.forEach(cubeObj => {
-      //   // animating the cube
-      //   cubeObj.cube.position.x += cubeObj.speed;
-      //   cubeObj.cube.rotation.x += 0.01;
-      //   cubeObj.cube.rotation.y += 0.01;
-
-      //   // removing the expired cube from the scene
-      //   if (cubeObj.cube.position.x > (cubeObj.visibleWidth / 2) + (cubeObj.cubeSize)) {
-      //     scene.remove(cubeObj.cube)
-      //     expiredCubes.push(cubeObj);
-      //   };
-
-      //   // removing the expired cube from the cubes array
-      //   if (expiredCubes.length) {
-      //     expiredCubes.forEach(expiredCube => {
-      //       for (let i=0; i<cubes.length; i++) {
-      //         if (expiredCube.uniqueID === cubes[i].uniqueID) {
-      //           cubes.splice(i, 1);
-      //         }
-      //       }
-      //     })
-      //   }
-      // })
+      stars.rotation.z += 0.001;
     };
     animate();
 
-    const handleScroll = () => {
+    // handle scroll
+    const handleScroll = throttle(() => {
       // handle nav2 reaching top of screen
       const nav2Top = nav2Ref.current.getBoundingClientRect().top;
       if (nav2Top <= 0) {
@@ -239,40 +147,19 @@ function App() {
       const nav3Bottom = nav3Ref.current.getBoundingClientRect().bottom;
       nav3Bottom < 0 ? setBackToTopStyle('backToTopButton') : setBackToTopStyle('backToTopButton backToTopButtonHide')
 
-      // handle about reaching top of screen
+      // handle sections reaching top of screen
       const aboutTop = aboutRef.current.getBoundingClientRect().top;
       const skillsTop = skillsRef.current.getBoundingClientRect().top;
       const projectsTop = projectsRef.current.getBoundingClientRect().top;
-
-      const secondaryElements = document.getElementsByClassName('secondaryColour');
-      if (aboutTop > 0) {
-        [...secondaryElements].forEach(element => {
-          element.classList.remove('secondaryColourB', 'secondaryColourC', 'secondaryColourD');
-        })
-      }
-      else if (projectsTop <= 0) {
-        [...secondaryElements].forEach(element => {
-          element.classList.remove('secondaryColourB', 'secondaryColourC');
-          element.classList.add('secondaryColourD');
-        })
-      }
-      else if (skillsTop <= 0) {
-        [...secondaryElements].forEach(element => {
-          element.classList.remove('secondaryColourB', 'secondaryColourD');
-          element.classList.add('secondaryColourC');
-        })
-      }
-      else if (aboutTop <= 0) {
-        [...secondaryElements].forEach(element => {
-          element.classList.remove('secondaryColourC', 'secondaryColourD');
-          element.classList.add('secondaryColourB');
-        })
-      }
-    };
+      if (aboutTop > 0) setSecondaryColour('');
+      else if (projectsTop <= 0) setSecondaryColour('secondaryColourD');
+      else if (skillsTop <= 0) setSecondaryColour('secondaryColourC');
+      else if (aboutTop <= 0) setSecondaryColour('secondaryColourB');
+    }, 200);
     
-    document.getElementById('main').addEventListener('scroll', handleScroll);
+    document.getElementById('main').addEventListener('wheel', handleScroll);
     return () => {
-      document.getElementById('main').removeEventListener('scroll', handleScroll);
+      document.getElementById('main').removeEventListener('wheel', handleScroll);
     };
   }, []);
 
@@ -281,7 +168,7 @@ function App() {
       <canvas ref={canvasRef} className='backgroundCanvas'/>
       <div className="container">
         <div className="navContainer">
-          <nav className='upperNav secondaryColour'>
+          <nav className={`upperNav ${secondaryColour}`}>
             <div className="upperNavInnerContainer">
               <h2 className='navHeading'>Jump To:</h2>
               <div className="navList">
@@ -291,7 +178,7 @@ function App() {
               </div>
             </div>
           </nav>
-          <nav className='lowerNav secondaryColour'>
+          <nav className={`lowerNav ${secondaryColour}`}>
             <div className="lowerNavInnerContainer">
               <h2 className='navHeading'>Other Links:</h2>
               <div className="navIcons">
@@ -310,19 +197,19 @@ function App() {
         </div>
         <main id='main'>
           <header>
-            <div className="headerImgBorder smallDevImgBorder secondaryColour">
+            <div className={`headerImgBorder smallDevImgBorder ${secondaryColour}`}>
               <img src={profileImg} alt="Profile Image" className='smallDevImg'/>
             </div>
             <div className="headerContent">
               <h1>Jay McKerracher</h1>
-              <div className="customRule secondaryColour headerRule" />
+              <div className={`customRule ${secondaryColour} headerRule`}/>
               <h2>Junior Software Engineer</h2>
             </div>
-            <div className="headerImgBorder bigDevImgBorder secondaryColour">
+            <div className={`headerImgBorder bigDevImgBorder ${secondaryColour}`}>
               <img src={profileImg} alt="Profile Image" className='bigDevImg'/>
             </div>
           </header>
-          <div className={`${nav2BorderStyle} secondaryColour`} ref={nav2Ref}>
+          <div className={`${nav2BorderStyle} ${secondaryColour}`} ref={nav2Ref}>
             <nav className={nav2Style}>
               <ul className='nav2List'>
                 <li><a href='#about'>About</a></li>
@@ -342,7 +229,7 @@ function App() {
             </div>
           </div>
           <div className={`${nav3BlurStyle} nav3Clickable`} onClick={handleLinkClick}>
-            <div className={`${nav3BorderStyle} secondaryColour`}>
+            <div className={`${nav3BorderStyle} ${secondaryColour}`}>
               <nav className="nav3">
                 <ul className='nav3List'>
                   <li onClick={handleLinkClick}><a href='#about' className='nav3Clickable'>About</a></li>
@@ -360,7 +247,7 @@ function App() {
           <div className="mainContent">
             <section id='about' ref={aboutRef}>
               <h2 className='sectionHeader'>About</h2>
-              <div className="customRule secondaryColour" />
+              <div className={`customRule ${secondaryColour}`}/>
               <div className="aboutContainer">
                 <p>
                   The retail industry has taught me so much over the last few years; I have learnt how to effectively communicate, work as part of a large team, and deal with unexpected events. I’ve had the opportunity to manage a team of people and also had the pleasure of working abroad. I really enjoyed my time in the retail world.
@@ -375,7 +262,7 @@ function App() {
             </section>
             <section id='skills' ref={skillsRef}>
               <h2 className='sectionHeader'>Skills</h2>
-              <div className="customRule secondaryColour" />
+              <div className={`customRule ${secondaryColour}`}/>
               <div className="gridFlex">
                 <div className="grid-container">
                   <div className="grid-item">
@@ -385,7 +272,7 @@ function App() {
                     </ul>
                   </div>
                   <div>
-                    <div className="skillsFlexContainer secondaryColour">
+                    <div className={`skillsFlexContainer ${secondaryColour}`}>
                       <div className="skillsInnerContainer">
                         <FontAwesomeIcon icon={faJsSquare} className='skillIcon' />
                       </div>
@@ -401,7 +288,7 @@ function App() {
                     </ul>
                   </div>
                   <div>
-                    <div className="skillsFlexContainer secondaryColour">
+                    <div className={`skillsFlexContainer ${secondaryColour}`}>
                       <div className="skillsInnerContainer">
                         <img src={sqlImg} alt="SQL" className='skillsImg'/>
                         <img src={psqlImg} alt="PSQL" className='skillsImg'/>
@@ -419,7 +306,7 @@ function App() {
                     </ul>
                   </div>
                   <div>
-                    <div className="skillsFlexContainer secondaryColour">
+                    <div className={`skillsFlexContainer ${secondaryColour}`}>
                       <div className="skillsInnerContainer">
                         <FontAwesomeIcon icon={faHtml5} className='skillIcon oddIcon'/>
                         <FontAwesomeIcon icon={faCss3Alt} className='skillIcon oddIcon' />
@@ -437,7 +324,7 @@ function App() {
                     </ul>
                   </div>
                   <div>
-                    <div className="skillsFlexContainer secondaryColour">
+                    <div className={`skillsFlexContainer ${secondaryColour}`}>
                       <div className="skillsInnerContainer">
                         <img src={jestImg} alt="Jest" className='skillsImg'/>
                       </div>
@@ -451,7 +338,7 @@ function App() {
                     </ul>
                   </div>
                   <div>
-                    <div className="skillsFlexContainer secondaryColour">
+                    <div className={`skillsFlexContainer ${secondaryColour}`}>
                       <div className="skillsInnerContainer">
                         <FontAwesomeIcon icon={faCloudflare} className='skillIcon' />
                         <img src={netlifyImg} alt="Netlify" className='skillsImg'/>
@@ -468,7 +355,7 @@ function App() {
                     </ul>
                   </div>
                   <div>
-                    <div className='skillsFlexContainer secondaryColour'>
+                    <div className={`skillsFlexContainer ${secondaryColour}`}>
                       <div className="skillsInnerContainer">
                         <img src={agileImg} alt="Agile" className='skillsImg'/>
                         <img src={pairedImg} alt="Agile" className='skillsImg'/>
@@ -480,22 +367,18 @@ function App() {
             </section>
             <section id='projects' ref={projectsRef}>
               <h2 className='sectionHeader'>Projects</h2>
-              <div className="customRule secondaryColour" />
+              <div className={`customRule ${secondaryColour}`} />
               <Project project={projects[0]} image={plottwistImg}/>
               <Project project={projects[1]} image ={ncNewsBackImg}/>
               <Project project={projects[2]} image={ncNewsFrontImg}/>
             </section>
           </div>
           <footer>
-            <p>"Built purely with React, using FontAwesome icons and the React Toastify NPM package.</p>
-            <p>
-              {/* Background photo by <a href="https://unsplash.com/@jasonortego?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target='_blank' className='projectLink'>Jason Ortego</a> on <a href="https://unsplash.com/photos/white-buildings-beside-seashore-behind-mountain-under-thick-clouds-TznjqhCHR9g?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target='_blank' className='projectLink'>Unsplash</a> */}
-              Background photo by <a href="https://unsplash.com/@mikehindle?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" className='projectURL'>Mike Hindle</a> on <a href="https://unsplash.com/photos/grayscale-photo-of-a-bridge-pYn_gdRqtiA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" className='projectURL'>Unsplash</a>"
-            </p>
+            <p>"Built purely with React.js and Three.js, using FontAwesome icons and the React Toastify NPM package."</p>
           </footer>
           <div className="backToTopContainer">
             <button className={backToTopStyle} onClick={() => document.getElementById('main').scrollTo(0, 0)}>
-              <FontAwesomeIcon icon={faChevronUp} className='backToTopArrow secondaryColour'/>
+              <FontAwesomeIcon icon={faChevronUp} className={`backToTopArrow ${secondaryColour}`}/>
             </button>
           </div>
         </main>

@@ -60,9 +60,8 @@ body {
   justify-content: space-between;
   align-items: center;
   /* background-color: #191919; */
-  background-color: rgba(25, 25, 25, 0.4);
+  background-color: rgba(25, 25, 25, 0.8);
   box-shadow: rgb(0, 0, 0) 0px 0px 30px;
-  backdrop-filter: blur(2px);
   z-index: 2;
 }
 
@@ -258,12 +257,6 @@ main {
 main::-webkit-scrollbar {
   display: none;
 }
-
-/* .mainContainer {
-  width: 90%;
-  height: 90%;
-  position: relative;
-} */
 
 header {
   width: 75%;
@@ -510,33 +503,25 @@ section ul {
   margin-top: 20px;
 }
 
-.projectFade {
-  position: absolute;
-  bottom: 0;
-  height: 200px;
-  width: 100%;
-  background: linear-gradient(to bottom, rgba(25, 25, 25, 0), rgb(25, 25, 25));
-  mask: linear-gradient(to bottom, transparent, #191919 80%);
-  backdrop-filter: blur(2px);
-  transition: opacity 500ms;
-  pointer-events: none;
-}
-
-.fadeDisappear {
-  opacity: 0;
+@property --maskColour {
+  syntax: '<color>';
+  initial-value: white;
+  inherits: false;
 }
 
 .projectMain {
   width: 90%;
-  padding: 30px;
+  padding: 30px 30px 15px 30px;
   overflow: hidden;
   position: relative;
   max-height: 1400px;
-  transition: max-height 500ms;
+  mask-image: linear-gradient(to bottom, white 50%, var(--maskColour));
+  transition: max-height 500ms, --maskColour 500ms;
 }
 
 .projectMainLimit {
-  max-height: 400px;
+  max-height: 350px;
+  --maskColour: transparent;
 }
 
 .projectMain p {
@@ -638,6 +623,7 @@ section ul {
 
 .readMoreButton {
   padding: 7.5px 10px;
+  margin-top: 15px;
   border-radius: 10em;
   border: none;
   width: 150px;
@@ -683,7 +669,7 @@ section ul {
 footer {
   width: 100%;
   text-align: center;
-  padding: 50px 0;
+  padding-top: 50px;
 }
 
 footer p {
@@ -816,6 +802,7 @@ footer p {
 .backToTopButtonHide {
   opacity: 0;
   pointer-events: none;
+  z-index: -1;
 }
 
 .backToTopArrow {

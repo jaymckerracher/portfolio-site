@@ -20,7 +20,6 @@ function Project ({project, image}) {
                 {desc.map(paragraph => {
                     return <p key={desc.indexOf(paragraph)}>{paragraph}</p>
                 })}
-                {/* <p>To see more of the technologies used, along with the rest of the code, check out the GitHub repo <a href={githubLink}target="_blank" className="projectURL">here</a>.</p> */}
                 {project.githubLink ? <div className="projectLink">
                     <FontAwesomeIcon icon={faGithub} className="projectLinkIcon"/>
                     <a href={project.githubLink} className="projectURL">Visit the GitHub repo</a>
@@ -31,7 +30,6 @@ function Project ({project, image}) {
                     <a href={project.hostedLink} className="projectURL">Visit the project</a>
                     <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="projectOutgoingIcon"/>
                 </div> : null}
-                <div className={fadeStyle} />
             </div>
             <ReadMoreButton setFadeStyle={setFadeStyle} setProjectStyling={setProjectStyling}/>
         </div>
