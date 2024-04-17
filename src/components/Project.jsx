@@ -30,7 +30,6 @@ function Project ({project, image}) {
                     <a href={project.hostedLink} className="projectURL">Visit the project</a>
                     <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="projectOutgoingIcon"/>
                 </div> : null}
-                {/* <div className={fadeStyle} /> */}
             </div>
             <ReadMoreButton setFadeStyle={setFadeStyle} setProjectStyling={setProjectStyling}/>
         </div>

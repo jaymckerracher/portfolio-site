@@ -20,7 +20,7 @@ import pairedImg from "./assets/paired.png";
 import plottwistImg from "./assets/plottwist.png";
 import ncNewsBackImg from "./assets/nc-news-back.png";
 import ncNewsFrontImg from "./assets/nc-news-front.png";
-import whiteCircleImg from "./assets/circle-24.png";
+import whiteCircleImg from "./assets/circle-64.png";
 
 import * as THREE from 'three';
 // import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
@@ -374,11 +374,7 @@ function App() {
             </section>
           </div>
           <footer>
-            <p>"Built purely with React, using FontAwesome icons and the React Toastify NPM package.</p>
-            <p>
-              {/* Background photo by <a href="https://unsplash.com/@jasonortego?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target='_blank' className='projectLink'>Jason Ortego</a> on <a href="https://unsplash.com/photos/white-buildings-beside-seashore-behind-mountain-under-thick-clouds-TznjqhCHR9g?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target='_blank' className='projectLink'>Unsplash</a> */}
-              Background photo by <a href="https://unsplash.com/@mikehindle?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" className='projectURL'>Mike Hindle</a> on <a href="https://unsplash.com/photos/grayscale-photo-of-a-bridge-pYn_gdRqtiA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" className='projectURL'>Unsplash</a>"
-            </p>
+            <p>"Built purely with React.js and Three.js, using FontAwesome icons and the React Toastify NPM package."</p>
           </footer>
           <div className="backToTopContainer">
             <button className={backToTopStyle} onClick={() => document.getElementById('main').scrollTo(0, 0)}>
